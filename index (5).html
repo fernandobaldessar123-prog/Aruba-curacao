@@ -1,0 +1,2594 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Aruba & CW">
+<meta name="theme-color" content="#0B4F6C">
+<title>🌴 Aruba & Curaçao 2026</title>
+
+<!-- Firebase -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, query, orderBy, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+  const cfg = {
+    apiKey: "AIzaSyAJUPVDr_8vhX3g7mjcUpyCqlbzHpyOufw",
+    authDomain: "aruba-curacao-2026.firebaseapp.com",
+    projectId: "aruba-curacao-2026",
+    storageBucket: "aruba-curacao-2026.firebasestorage.app",
+    messagingSenderId: "991457062264",
+    appId: "1:991457062264:web:f18208d4333c5ada776c8d"
+  };
+  const app = initializeApp(cfg);
+  const db = getFirestore(app);
+  window._db = db;
+  window._fb = { collection, addDoc, onSnapshot, deleteDoc, doc, query, orderBy, setDoc, getDoc };
+  window._fbReady = true;
+  document.dispatchEvent(new CustomEvent('firebase-ready'));
+</script>
+
+<!-- PWA -->
+<script>
+window.addEventListener('DOMContentLoaded', function() {
+  const m = { name:"Aruba & Curaçao 2026", short_name:"Aruba & CW", start_url:".", display:"standalone", background_color:"#0B4F6C", theme_color:"#0B4F6C", icons:[{src:"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='40' fill='%230B4F6C'/%3E%3Ctext x='96' y='130' font-size='110' text-anchor='middle'%3E🌴%3C/text%3E%3C/svg%3E", sizes:"192x192", type:"image/svg+xml"}] };
+  const b = new Blob([JSON.stringify(m)],{type:'application/json'});
+  const l = document.createElement('link'); l.rel='manifest'; l.href=URL.createObjectURL(b); document.head.appendChild(l);
+  // Apple icon
+  try {
+    const c = document.createElement('canvas'); c.width=180; c.height=180;
+    const x = c.getContext('2d');
+    const g = x.createLinearGradient(0,0,180,180); g.addColorStop(0,'#0B4F6C'); g.addColorStop(1,'#0A7A5A');
+    x.fillStyle=g; x.beginPath(); x.roundRect(0,0,180,180,36); x.fill();
+    x.font='96px serif'; x.textAlign='center'; x.textBaseline='middle'; x.fillText('🌴',90,82);
+    x.font='bold 20px sans-serif'; x.fillStyle='white'; x.fillText('Aruba',90,148);
+    const il=document.createElement('link'); il.rel='apple-touch-icon'; il.href=c.toDataURL(); document.head.appendChild(il);
+  } catch(e){}
+});
+</script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap');
+
+:root {
+  --aruba: #0B7EA8;
+  --aruba-dark: #0B4F6C;
+  --curacao: #0A8A60;
+  --curacao-dark: #0A5A40;
+  --accent: #F4A261;
+  --bg: #F0F4F8;
+  --card: #FFFFFF;
+  --text: #1A2332;
+  --sub: #5A6A7E;
+  --border: #DDE4ED;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body { font-family: 'DM Sans', -apple-system, sans-serif; background: var(--bg); color: var(--text); font-size: 15px; padding-bottom: 90px; }
+
+/* HEADER */
+.app-header {
+  background: linear-gradient(160deg, #0B4F6C 0%, #0B7EA8 50%, #0A7A5A 100%);
+  color: white; padding: 20px 16px 15px; text-align: center;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+}
+.app-header h1 { font-family: 'DM Serif Display', serif; font-size: 22px; font-weight: 400; letter-spacing: 0.3px; }
+.app-header .sub { font-size: 11.5px; opacity: 0.85; margin-top: 3px; display: flex; align-items: center; justify-content: center; gap: 6px; }
+.sync-dot { width: 7px; height: 7px; border-radius: 50%; background: #4ade80; display: inline-block; animation: pulse 2s infinite; }
+.sync-dot.off { background: #f87171; animation: none; }
+.sync-dot.loading { background: #fbbf24; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+/* TABS */
+.tabs { display: flex; background: white; border-bottom: 2px solid var(--border); position: sticky; top: 74px; z-index: 99; overflow-x: auto; scrollbar-width: none; }
+.tabs::-webkit-scrollbar { display: none; }
+.tab { flex: 0 0 auto; padding: 11px 14px; font-size: 12.5px; font-weight: 600; color: var(--sub); cursor: pointer; border-bottom: 3px solid transparent; white-space: nowrap; transition: all 0.2s; }
+.tab.active { color: var(--aruba); border-bottom-color: var(--aruba); background: #F0F8FF; }
+
+/* CONTENT */
+.content { padding: 14px; display: none; animation: fadeIn 0.2s; }
+.content.active { display: block; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:translateY(0)} }
+
+/* HERO CARD */
+.hero-card { border-radius: 18px; padding: 16px; margin-bottom: 14px; color: white; }
+.hero-card.aruba { background: linear-gradient(135deg, #0B4F6C, #0B7EA8); }
+.hero-card.curacao { background: linear-gradient(135deg, #0A5A40, #0A8A60); }
+.hero-card.both { background: linear-gradient(135deg, #0B4F6C, #0B7EA8 50%, #0A7A5A); }
+.hero-card h2 { font-family: 'DM Serif Display', serif; font-size: 20px; font-weight: 400; margin-bottom: 6px; }
+.hero-card p { font-size: 12.5px; opacity: 0.9; line-height: 1.6; }
+
+/* CARDS */
+.card { background: var(--card); border-radius: 16px; padding: 14px; margin-bottom: 12px; box-shadow: var(--shadow); }
+.card-title { font-size: 15px; font-weight: 700; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+
+/* DAY HEADER */
+.day-header { border-radius: 16px; padding: 14px 16px; margin-bottom: 12px; color: white; }
+.day-header.aruba { background: linear-gradient(135deg, #0B4F6C, #0B7EA8); }
+.day-header.curacao { background: linear-gradient(135deg, #0A5A40, #0A8A60); }
+.day-header .day-num { font-size: 11px; font-weight: 600; opacity: 0.75; text-transform: uppercase; letter-spacing: 0.8px; }
+.day-header h2 { font-family: 'DM Serif Display', serif; font-size: 20px; font-weight: 400; margin: 3px 0; }
+.day-header .loc { font-size: 12px; opacity: 0.85; }
+.day-header .day-actions { display: flex; gap: 6px; margin-top: 8px; }
+.day-add-btn { background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.4); border-radius: 20px; padding: 4px 12px; font-size: 11.5px; font-weight: 600; cursor: pointer; }
+
+/* PERIOD */
+.period { background: var(--bg); border-radius: 12px; padding: 10px 12px; margin-bottom: 8px; }
+.period-label { font-size: 11px; font-weight: 700; color: var(--aruba); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+.period-label.cur { color: var(--curacao); }
+
+/* ACTIVITY */
+.activity-wrap { position: relative; }
+.activity { display: flex; gap: 10px; margin-bottom: 8px; background: white; border-radius: 12px; padding: 10px 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+.activity-icon { font-size: 20px; flex-shrink: 0; }
+.activity-body { flex: 1; min-width: 0; }
+.activity-title { font-size: 13.5px; font-weight: 700; color: var(--text); }
+.activity-desc { font-size: 12px; color: var(--sub); line-height: 1.5; margin-top: 2px; }
+.activity-footer { display: flex; gap: 5px; margin-top: 7px; flex-wrap: wrap; align-items: center; }
+
+/* TAGS */
+.tag { display: inline-flex; align-items: center; gap: 3px; font-size: 10.5px; font-weight: 600; padding: 2px 8px; border-radius: 20px; }
+.tag-price { background: #FEF3C7; color: #92400E; }
+.tag-reserve { background: #FEE2E2; color: #991B1B; }
+.tag-free { background: #DCFCE7; color: #166534; }
+.tag-tip { background: #E0E7FF; color: #3730A3; }
+.tag-addr { background: #F1F5F9; color: #475569; }
+.tag-phone { background: #FDF4FF; color: #7E22CE; }
+
+/* ACTION BUTTONS on activities */
+.act-photo-btn { display: inline-flex; align-items: center; gap: 3px; background: white; border: 1.5px solid var(--border); border-radius: 20px; padding: 3px 9px; font-size: 11px; font-weight: 600; color: var(--sub); cursor: pointer; transition: all 0.15s; }
+.act-photo-btn.has-photos { border-color: var(--aruba); color: var(--aruba); background: #EFF6FF; }
+.act-edit-btn { display: inline-flex; align-items: center; gap: 3px; background: white; border: 1.5px solid var(--border); border-radius: 20px; padding: 3px 9px; font-size: 11px; font-weight: 600; color: var(--sub); cursor: pointer; }
+.act-del-btn { display: inline-flex; align-items: center; background: white; border: 1.5px solid #FEE2E2; border-radius: 20px; padding: 3px 9px; font-size: 11px; font-weight: 600; color: #EF4444; cursor: pointer; }
+.photo-count-badge { background: var(--aruba); color: white; border-radius: 10px; padding: 0 5px; font-size: 10px; font-weight: 800; }
+
+/* DETAIL EXPAND */
+.detail-panel { display: none; background: #F8FAFC; border-radius: 10px; padding: 10px 12px; margin-top: 6px; border-left: 3px solid var(--aruba); }
+.detail-panel.cur { border-left-color: var(--curacao); }
+.detail-panel.open { display: block; }
+.detail-row { font-size: 12px; color: var(--sub); padding: 4px 0; border-bottom: 1px solid var(--border); display: flex; gap: 8px; }
+.detail-row:last-child { border-bottom: none; }
+.detail-label { font-weight: 700; color: var(--text); min-width: 75px; flex-shrink: 0; }
+.detail-toggle-btn { display: inline-flex; align-items: center; gap: 3px; background: white; border: 1.5px solid var(--border); border-radius: 20px; padding: 3px 9px; font-size: 11px; font-weight: 600; color: var(--sub); cursor: pointer; }
+
+/* ADD EVENT */
+.add-event-area { border: 2px dashed var(--border); border-radius: 12px; padding: 10px; text-align: center; cursor: pointer; color: var(--sub); font-size: 12.5px; font-weight: 600; margin-bottom: 10px; transition: all 0.2s; }
+.add-event-area:active { background: #F0F8FF; border-color: var(--aruba); }
+
+/* PLACE CARDS (restaurants & beaches) */
+.place-card { background: white; border-radius: 14px; padding: 14px; margin-bottom: 10px; box-shadow: var(--shadow); border-left: 4px solid var(--aruba); }
+.place-card.curacao { border-left-color: var(--curacao); }
+.place-name { font-size: 15px; font-weight: 800; margin-bottom: 4px; }
+.place-subtitle { font-size: 12px; color: var(--sub); margin-bottom: 8px; }
+.place-tags { margin-bottom: 8px; display: flex; flex-wrap: wrap; gap: 4px; }
+.place-desc { font-size: 12.5px; color: var(--sub); line-height: 1.55; }
+.place-details { display: none; margin-top: 10px; border-top: 1px solid var(--border); padding-top: 10px; }
+.place-details.open { display: block; }
+.place-detail-row { display: flex; gap: 8px; padding: 5px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
+.place-detail-row:last-child { border-bottom: none; }
+.place-detail-label { font-weight: 700; min-width: 85px; flex-shrink: 0; color: var(--text); }
+.place-detail-val { color: var(--sub); line-height: 1.4; }
+.expand-btn { background: var(--bg); border: none; border-radius: 8px; padding: 5px 12px; font-size: 11.5px; font-weight: 600; color: var(--sub); cursor: pointer; margin-top: 8px; width: 100%; }
+
+/* AIRPORT CARDS */
+.airport-card { background: white; border-radius: 14px; padding: 14px; margin-bottom: 10px; box-shadow: var(--shadow); }
+.airport-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.airport-icon { font-size: 32px; }
+.airport-name { font-size: 15px; font-weight: 800; }
+.airport-code { font-size: 12px; color: var(--sub); }
+.airport-flight-info { background: var(--bg); border-radius: 10px; padding: 10px 12px; margin-bottom: 10px; }
+.flight-row { display: flex; gap: 8px; font-size: 12.5px; padding: 4px 0; border-bottom: 1px solid var(--border); }
+.flight-row:last-child { border-bottom: none; }
+.flight-label { font-weight: 700; min-width: 80px; flex-shrink: 0; }
+
+/* HOSPEDAGEM */
+.hotel-card { background: white; border-radius: 14px; padding: 14px; margin-bottom: 10px; box-shadow: var(--shadow); border-top: 4px solid var(--aruba); }
+.hotel-card.curacao { border-top-color: var(--curacao); }
+.hotel-name { font-size: 16px; font-weight: 800; margin-bottom: 4px; }
+.hotel-subtitle { font-size: 12px; color: var(--sub); margin-bottom: 8px; }
+
+/* ISLAND SELECTOR */
+.island-btns { display: flex; gap: 8px; margin-bottom: 14px; }
+.island-btn { flex: 1; padding: 10px; border-radius: 12px; border: 2px solid var(--border); background: white; font-size: 13px; font-weight: 700; cursor: pointer; text-align: center; transition: all 0.2s; }
+.island-btn.active-a { border-color: var(--aruba); background: #EFF6FF; color: var(--aruba); }
+.island-btn.active-c { border-color: var(--curacao); background: #F0FDF4; color: var(--curacao); }
+.island-section { display: none; }
+.island-section.active { display: block; }
+
+/* COSTS */
+.cost-tabs { display: flex; gap: 8px; margin-bottom: 12px; }
+.cost-tab { flex: 1; padding: 9px; border-radius: 12px; border: 2px solid var(--border); background: white; font-size: 12.5px; font-weight: 700; cursor: pointer; text-align: center; }
+.cost-tab.active { border-color: var(--aruba); background: #EFF6FF; color: var(--aruba); }
+.cost-section { display: none; }
+.cost-section.active { display: block; }
+.cost-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+.cost-row:last-child { border-bottom: none; }
+.cost-total { font-weight: 800; font-size: 15px; color: var(--aruba); }
+.balance-hero { border-radius: 16px; padding: 16px; margin-bottom: 12px; background: linear-gradient(135deg, #0B4F6C, #0A7A5A); color: white; }
+.balance-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 10px; }
+.balance-item { text-align: center; background: rgba(255,255,255,0.15); border-radius: 10px; padding: 8px 4px; }
+.balance-val { font-size: 17px; font-weight: 800; }
+.balance-label { font-size: 10px; opacity: 0.8; margin-top: 2px; }
+.exp-form { background: white; border-radius: 14px; padding: 14px; margin-bottom: 12px; box-shadow: var(--shadow); }
+.exp-input { width: 100%; border: 1.5px solid var(--border); border-radius: 10px; padding: 9px 12px; font-size: 14px; font-family: inherit; margin-bottom: 8px; outline: none; background: #FAFAFA; }
+.exp-input:focus { border-color: var(--aruba); background: white; }
+.exp-row { display: flex; gap: 8px; }
+.exp-row .exp-input { margin-bottom: 0; flex: 1; }
+.btn-add-exp { width: 100%; background: var(--aruba); color: white; border: none; border-radius: 10px; padding: 11px; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 8px; }
+.expense-item { display: flex; justify-content: space-between; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.expense-item:last-child { border-bottom: none; }
+.expense-name { font-size: 13.5px; font-weight: 700; }
+.expense-meta { font-size: 11px; color: var(--sub); margin-top: 2px; }
+.expense-right { display: flex; align-items: center; gap: 8px; }
+.expense-val { font-size: 15px; font-weight: 800; color: var(--aruba); }
+.expense-del { background: none; border: none; color: #EF4444; font-size: 18px; cursor: pointer; }
+
+/* PHOTOS */
+.photo-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 500; align-items: flex-end; justify-content: center; }
+.photo-modal-overlay.open { display: flex; }
+.photo-modal { background: white; border-radius: 24px 24px 0 0; width: 100%; max-height: 88vh; overflow-y: auto; padding: 0 0 28px; }
+.modal-handle { width: 40px; height: 4px; background: var(--border); border-radius: 4px; margin: 12px auto 0; }
+.modal-header { display: flex; align-items: center; justify-content: space-between; padding: 13px 16px 11px; border-bottom: 1px solid var(--border); }
+.modal-title { font-size: 14.5px; font-weight: 700; }
+.modal-close { background: var(--bg); border: none; border-radius: 50%; width: 30px; height: 30px; font-size: 16px; cursor: pointer; }
+.modal-body { padding: 14px 16px; }
+.photo-action-btns { display: flex; gap: 10px; margin-bottom: 14px; }
+.photo-action-btn { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 5px; background: var(--bg); border: 2px solid var(--border); border-radius: 14px; padding: 14px 8px; cursor: pointer; font-size: 12px; font-weight: 600; color: var(--sub); transition: all 0.15s; }
+.photo-action-btn:active { background: #EFF6FF; border-color: var(--aruba); color: var(--aruba); }
+.photo-action-btn .icon { font-size: 28px; }
+.photo-preview-modal { width: 100%; max-height: 220px; object-fit: cover; border-radius: 12px; margin: 8px 0; display: none; }
+.photo-preview-modal.vis { display: block; }
+.caption-input { width: 100%; border: 1.5px solid var(--border); border-radius: 10px; padding: 10px 12px; font-size: 14px; font-family: inherit; outline: none; }
+.caption-input:focus { border-color: var(--aruba); }
+.btn-save-photo { width: 100%; background: var(--aruba); color: white; border: none; border-radius: 12px; padding: 13px; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 10px; display: none; }
+.btn-save-photo.vis { display: block; }
+.btn-cancel-photo { width: 100%; background: var(--bg); color: var(--sub); border: 1.5px solid var(--border); border-radius: 12px; padding: 10px; font-size: 13px; font-weight: 600; cursor: pointer; margin-top: 6px; display: none; }
+.btn-cancel-photo.vis { display: block; }
+.modal-photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+.modal-thumb { border-radius: 10px; overflow: hidden; position: relative; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+.modal-thumb img { width: 100%; height: 105px; object-fit: cover; display: block; }
+.modal-thumb-info { padding: 5px 7px; background: white; }
+.modal-thumb-cap { font-size: 11px; font-weight: 600; }
+.modal-thumb-who { font-size: 10px; color: var(--sub); }
+.modal-thumb-del { position: absolute; top: 4px; right: 4px; background: rgba(0,0,0,0.6); color: white; border: none; border-radius: 50%; width: 22px; height: 22px; font-size: 11px; cursor: pointer; }
+.sync-badge { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 10px; margin-top: 8px; display: inline-block; }
+.sync-ok { background: #DCFCE7; color: #166534; }
+.sync-pending { background: #FEF3C7; color: #92400E; }
+
+/* ALBUM */
+.user-pills { display: flex; gap: 8px; margin-bottom: 12px; }
+.user-pill { flex: 1; padding: 8px; border-radius: 12px; border: 2px solid var(--border); background: white; font-size: 12.5px; font-weight: 700; cursor: pointer; text-align: center; }
+.user-pill.active { border-color: var(--aruba); background: #EFF6FF; color: var(--aruba); }
+.filter-scroll { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 12px; scrollbar-width: none; }
+.filter-scroll::-webkit-scrollbar { display: none; }
+.filter-chip { flex: 0 0 auto; padding: 5px 12px; border-radius: 20px; border: 1.5px solid var(--border); background: white; font-size: 11.5px; font-weight: 600; color: var(--sub); cursor: pointer; white-space: nowrap; }
+.filter-chip.active { border-color: var(--aruba); background: #EFF6FF; color: var(--aruba); }
+.photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.photo-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); position: relative; }
+.photo-card img { width: 100%; height: 130px; object-fit: cover; display: block; cursor: pointer; }
+.photo-card-body { padding: 8px 10px; }
+.photo-card-cap { font-size: 12.5px; font-weight: 700; }
+.photo-card-meta { font-size: 10.5px; color: var(--sub); margin-top: 2px; }
+.photo-card-del { position: absolute; top: 5px; right: 5px; background: rgba(0,0,0,0.6); color: white; border: none; border-radius: 50%; width: 24px; height: 24px; font-size: 12px; cursor: pointer; }
+.who-badge { position: absolute; top: 5px; left: 5px; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 10px; }
+.who-f { background: #DBEAFE; color: var(--aruba); }
+.who-d { background: #DCFCE7; color: var(--curacao); }
+
+/* LIGHTBOX */
+.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 999; flex-direction: column; align-items: center; justify-content: center; padding: 16px; }
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 100%; max-height: 75vh; object-fit: contain; border-radius: 12px; }
+.lightbox-cap { color: white; font-size: 14px; font-weight: 600; margin-top: 12px; text-align: center; }
+.lightbox-meta { color: rgba(255,255,255,0.55); font-size: 11.5px; margin-top: 4px; }
+.lightbox-close { position: absolute; top: 14px; right: 14px; background: rgba(255,255,255,0.15); color: white; border: none; border-radius: 50%; width: 38px; height: 38px; font-size: 20px; cursor: pointer; }
+
+/* EDIT MODAL */
+.edit-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 600; align-items: flex-end; justify-content: center; }
+.edit-modal-overlay.open { display: flex; }
+.edit-modal { background: white; border-radius: 24px 24px 0 0; width: 100%; padding: 0 0 30px; }
+.edit-input { width: 100%; border: 1.5px solid var(--border); border-radius: 10px; padding: 10px 12px; font-size: 14px; font-family: inherit; outline: none; margin-bottom: 8px; }
+.edit-input:focus { border-color: var(--aruba); }
+.edit-textarea { width: 100%; border: 1.5px solid var(--border); border-radius: 10px; padding: 10px 12px; font-size: 13px; font-family: inherit; outline: none; height: 80px; resize: none; margin-bottom: 8px; }
+.btn-save-edit { width: 100%; background: var(--aruba); color: white; border: none; border-radius: 12px; padding: 13px; font-size: 14px; font-weight: 700; cursor: pointer; }
+.btn-del-event { width: 100%; background: #FEE2E2; color: #991B1B; border: none; border-radius: 12px; padding: 11px; font-size: 13px; font-weight: 700; cursor: pointer; margin-top: 6px; }
+
+/* TIPS */
+.tip-card { background: linear-gradient(135deg, #EFF6FF, #DBEAFE); border-left: 4px solid var(--aruba); border-radius: 0 12px 12px 0; padding: 12px 14px; margin-bottom: 10px; }
+.tip-card.cur { background: linear-gradient(135deg, #F0FDF4, #DCFCE7); border-left-color: var(--curacao); }
+.tip-title { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+.tip-text { font-size: 12.5px; color: var(--sub); line-height: 1.5; }
+
+/* HIGHLIGHT */
+.highlight { background: #FFF7ED; border: 1px solid #FED7AA; border-radius: 12px; padding: 12px 14px; margin-bottom: 12px; }
+.highlight p { font-size: 13px; font-weight: 600; color: #9A3412; line-height: 1.7; }
+
+/* FAB */
+.fab { position: fixed; bottom: 22px; right: 16px; z-index: 200; background: linear-gradient(135deg, #0B4F6C, #0A7A5A); color: white; border: none; border-radius: 50px; padding: 12px 18px; font-size: 13px; font-weight: 700; box-shadow: 0 6px 20px rgba(0,0,0,0.3); cursor: pointer; display: flex; align-items: center; gap: 6px; }
+
+/* EXPORT MODAL */
+.export-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 500; align-items: flex-end; justify-content: center; }
+.export-modal-overlay.open { display: flex; }
+.export-modal { background: white; border-radius: 24px 24px 0 0; width: 100%; padding: 0 0 32px; }
+.export-option { display: flex; gap: 14px; align-items: flex-start; background: var(--bg); border: 1.5px solid var(--border); border-radius: 14px; padding: 14px; margin-bottom: 10px; cursor: pointer; transition: all 0.15s; }
+.export-option:active { background: #EFF6FF; border-color: var(--aruba); }
+.export-icon { font-size: 30px; flex-shrink: 0; }
+.export-text strong { display: block; font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+.export-text span { font-size: 12px; color: var(--sub); line-height: 1.4; }
+
+/* MISC */
+.section-label { font-size: 11.5px; font-weight: 700; color: var(--sub); text-transform: uppercase; letter-spacing: 0.5px; margin: 14px 0 8px; }
+.divider { height: 1px; background: var(--border); margin: 12px 0; }
+.empty-state { text-align: center; padding: 36px 16px; color: var(--sub); }
+.empty-icon { font-size: 48px; margin-bottom: 10px; }
+.empty-state p { font-size: 13px; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<div class="app-header">
+  <h1>🌴 Aruba & Curaçao 2026</h1>
+  <div class="sub">
+    <span class="sync-dot loading" id="syncDot"></span>
+    <span id="syncText">Conectando...</span>
+    <span>· 11–20 de Março</span>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('overview')">📋 Geral</div>
+  <div class="tab" onclick="switchTab('aruba')">🌺 Aruba</div>
+  <div class="tab" onclick="switchTab('curacao')">🌊 Curaçao</div>
+  <div class="tab" onclick="switchTab('hotels')">🏨 Hospedagem</div>
+  <div class="tab" onclick="switchTab('airports')">✈️ Aeroportos</div>
+  <div class="tab" onclick="switchTab('restaurants')">🍽 Restaurantes</div>
+  <div class="tab" onclick="switchTab('beaches')">🏖 Praias</div>
+  <div class="tab" onclick="switchTab('costs')">💰 Custos</div>
+  <div class="tab" onclick="switchTab('photos')">📸 Fotos</div>
+  <div class="tab" onclick="switchTab('tips')">💡 Dicas</div>
+</div>
+
+<!-- ============ VISÃO GERAL ============ -->
+<div class="content active" id="tab-overview">
+  <div class="hero-card both">
+    <h2>✈️ Sua Viagem</h2>
+    <p>
+      11/03 (Qua) → chegada Aruba 13h · Palm Beach<br>
+      12–15/03 → explorando Aruba 🌺<br>
+      16/03 (Seg) → voo Aruba→Curaçao 8h30<br>
+      17–19/03 → explorando Curaçao 🌊<br>
+      20/03 (Sex) → partida Curaçao 18h30
+    </p>
+  </div>
+
+  <div class="section-label">📅 Itinerário resumido</div>
+  <div class="card" id="overview-itinerary">
+    <div style="font-size:13px;line-height:2;color:var(--sub);">
+      <b style="color:var(--text)">Dia 1 · 11/03 Qua</b> — Aruba: chegada, Palm Beach, Bugaloe, Gianni's<br>
+      <b style="color:var(--text)">Dia 2 · 12/03 Qui</b> — Eagle Beach, Oranjestad, MooMba, Bohemian<br>
+      <b style="color:var(--text)">Dia 3 · 13/03 Sex</b> — Farol California, Malmok, Renaissance Island 🦩, Atardi<br>
+      <b style="color:var(--text)">Dia 4 · 14/03 Sáb</b> — Druif Beach, Zeerovers, Reflexions, AZAR<br>
+      <b style="color:var(--text)">Dia 5 · 15/03 Dom</b> — Natural Pool 4×4, Spa, Monforte Cruise ⛵<br>
+      <b style="color:var(--text)">Dia 6 · 16/03 Seg</b> — voo AUA→CUR, Willemstad, Kokomo, Gouverneur<br>
+      <b style="color:var(--text)">Dia 7 · 17/03 Ter</b> — Grote Knip, Klein Knip, Playa Lagun 🐢, Kome<br>
+      <b style="color:var(--text)">Dia 8 · 18/03 Qua</b> — Cas Abao, Porto Mari, Mambo Beach, Sal<br>
+      <b style="color:var(--text)">Dia 9 · 19/03 Qui</b> — Fort Nassau, Kura Hulanda, Jan Thiel, Wine Cellar 🥂<br>
+      <b style="color:var(--text)">Dia 10 · 20/03 Sex</b> — Blue Bay, souvenirs, partida 18h30
+    </div>
+  </div>
+
+  <div class="highlight">
+    <p>🚨 Reservar com antecedência:<br>
+    🦩 Renaissance Island: +297 583-6000<br>
+    ⛵ Monforte Cruise: +297 586-1603<br>
+    🥂 The Wine Cellar: +599 9 461-2178<br>
+    🏰 Fort Nassau: +599 9 461-3086</p>
+  </div>
+</div>
+
+<!-- ============ ARUBA ============ -->
+<div class="content" id="tab-aruba">
+
+  <!-- DIA 1 -->
+  <div class="day-header aruba">
+    <div class="day-num">Dia 1 · 11 de Março (Quarta)</div>
+    <h2>Chegada em Aruba</h2>
+    <div class="loc">📍 Aeroporto AUA · Palm Beach · Bugaloe · Gianni's</div>
+    <div class="day-actions"><button class="day-add-btn" onclick="openAddEvent('aruba',1)">+ Adicionar evento</button></div>
+  </div>
+  <div id="aruba-day-1-events">
+  <div class="period">
+    <div class="period-label">☀️ TARDE</div>
+    <div class="activity" id="evt-a1-1">
+      <div class="activity-icon">✈️</div>
+      <div class="activity-body">
+        <div class="activity-title">13h — Chegada no aeroporto AUA</div>
+        <div class="activity-desc">Imigração rápida. Aluguel de carro nos balcões. ~15 min até Palm Beach.</div>
+        <div class="activity-footer">
+          <button class="act-photo-btn" id="pbtn-a1-1" onclick="openPhotoModal('a1-1','Chegada AUA · Aruba')">📷 Foto <span class="photo-count-badge" id="pcnt-a1-1" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('a1-1','Chegada no aeroporto AUA','13h — Chegada no aeroporto AUA. Imigração rápida. Aluguel de carro nos balcões. ~15 min até Palm Beach.')">✏️</button>
+        </div>
+      </div>
+    </div>
+    <div class="activity" id="evt-a1-2">
+      <div class="activity-icon">🏖</div>
+      <div class="activity-body">
+        <div class="activity-title">17h — Primeira caminhada em Palm Beach</div>
+        <div class="activity-desc">Areia branca, água turquesa. Sinta o clima caribenho! Fotos do calçadão.</div>
+        <div class="activity-footer">
+          <span class="tag tag-free">Gratuito</span>
+          <button class="act-photo-btn" id="pbtn-a1-2" onclick="openPhotoModal('a1-2','Palm Beach · chegada')">📷 Foto <span class="photo-count-badge" id="pcnt-a1-2" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('a1-2','Palm Beach','17h — Primeira caminhada em Palm Beach. Areia branca, água turquesa.')">✏️</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="period">
+    <div class="period-label">🌅 HAPPY HOUR</div>
+    <div class="activity" id="evt-a1-3">
+      <div class="activity-icon">🍹</div>
+      <div class="activity-body">
+        <div class="activity-title">18h — Bugaloe Beach Bar & Grill</div>
+        <div class="activity-desc">Pier sobre o mar, pôr do sol incrível, karaokê, ambiente colorido. Ceviche, hambúrguer tropical.</div>
+        <div class="activity-footer">
+          <span class="tag tag-price">Drinks $10-15 · Comida $15-25</span>
+          <span class="tag tag-free">Sem cover</span>
+          <button class="act-photo-btn" id="pbtn-a1-3" onclick="openPhotoModal('a1-3','Bugaloe Beach Bar')">📷 Foto <span class="photo-count-badge" id="pcnt-a1-3" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('a1-3','Bugaloe Beach Bar','18h — Bugaloe Beach Bar & Grill. Pier sobre o mar, pôr do sol.')">✏️</button>
+        </div>
+        <div class="detail-panel" id="dp-a1-3">
+          <div class="detail-row"><span class="detail-label">📍 Endereço</span><span>J.E. Irausquin Blvd 370, Palm Beach (entre Hilton e Riu)</span></div>
+          <div class="detail-row"><span class="detail-label">🕐 Horário</span><span>Diariamente 11h–23h</span></div>
+          <div class="detail-row"><span class="detail-label">💡 Dica</span><span>Chegar às 17h30 para pegar mesa no pier. Domingo tem DJ ao vivo!</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-a1-3',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+  </div>
+  <div class="period">
+    <div class="period-label">🌙 JANTAR</div>
+    <div class="activity" id="evt-a1-4">
+      <div class="activity-icon">🍽</div>
+      <div class="activity-body">
+        <div class="activity-title">20h — Gianni's Restaurant</div>
+        <div class="activity-desc">Italiano clássico, massa artesanal. Ambiente romântico em Palm Beach.</div>
+        <div class="activity-footer">
+          <span class="tag tag-reserve">⚠️ RESERVA: +297 586-6665</span>
+          <span class="tag tag-price">~$40-60 pp</span>
+          <button class="act-photo-btn" id="pbtn-a1-4" onclick="openPhotoModal('a1-4','Gianni\'s Restaurant')">📷 Foto <span class="photo-count-badge" id="pcnt-a1-4" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('a1-4','Gianni\'s Restaurant','20h — Gianni\'s Restaurant. Italiano clássico, massa artesanal.')">✏️</button>
+        </div>
+        <div class="detail-panel" id="dp-a1-4">
+          <div class="detail-row"><span class="detail-label">📍 Endereço</span><span>J.E. Irausquin Blvd 374, Palm Beach</span></div>
+          <div class="detail-row"><span class="detail-label">📞 Reserva</span><span>+297 586-6665 (recomendado!)</span></div>
+          <div class="detail-row"><span class="detail-label">💰 Faixa</span><span>~$40-60 por pessoa</span></div>
+          <div class="detail-row"><span class="detail-label">💡 Dica</span><span>Peça a burrata de entrada e o risotto de frutos do mar. Vinho importado excelente!</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-a1-4',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="add-event-area" onclick="openAddEvent('aruba',1)">+ Adicionar evento ao Dia 1</div>
+
+  <!-- DIA 2 -->
+  <div class="day-header aruba">
+    <div class="day-num">Dia 2 · 12 de Março (Quinta)</div>
+    <h2>Eagle Beach & Oranjestad</h2>
+    <div class="loc">📍 Eagle Beach · Oranjestad · MooMba · Bohemian</div>
+    <div class="day-actions"><button class="day-add-btn" onclick="openAddEvent('aruba',2)">+ Adicionar evento</button></div>
+  </div>
+  <div id="aruba-day-2-events">
+  <div class="period">
+    <div class="period-label">☀️ MANHÃ</div>
+    <div class="activity" id="evt-a2-1">
+      <div class="activity-icon">☕</div>
+      <div class="activity-body">
+        <div class="activity-title">7h30 — Eduardo's Beach Shack</div>
+        <div class="activity-desc">Melhor café da manhã de Aruba! Açaí bowl, smoothies, ovos.</div>
+        <div class="activity-footer">
+          <span class="tag tag-price">~$12-20 pp</span>
+          <button class="act-photo-btn" id="pbtn-a2-1" onclick="openPhotoModal('a2-1','Eduardo\'s Beach Shack')">📷 Foto <span class="photo-count-badge" id="pcnt-a2-1" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('a2-1','Eduardo\'s Beach Shack','7h30 — Café da manhã. Açaí bowl, smoothies, ovos.')">✏️</button>
+        </div>
+        <div class="detail-panel" id="dp-a2-1">
+          <div class="detail-row"><span class="detail-label">📍 Endereço</span><span>Boardwalk Boutique Hotel, Palm Beach</span></div>
+          <div class="detail-row"><span class="detail-label">🕐 Horário</span><span>7h–14h (fecha cedo!)</span></div>
+          <div class="detail-row"><span class="detail-label">💡 Dica</span><span>Chegar antes das 8h — fica lotado. O açaí bowl com granola é imperdível!</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-a2-1',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+    <div class="activity" id="evt-a2-2">
+      <div class="activity-icon">🏖</div>
+      <div class="activity-body">
+        <div class="activity-title">9h — Eagle Beach</div>
+        <div class="activity-desc">Uma das 10 praias mais bonitas do mundo! Areia branca e fina, água calma. Menos movimento que Palm Beach.</div>
+        <div class="activity-footer">
+          <span class="tag tag-free">Entrada gratuita</span>
+          <span class="tag tag-price">Cadeiras ~$15-20/par</span>
+          <button class="act-photo-btn" id="pbtn-a2-2" onclick="openPhotoModal('a2-2','Eagle Beach')">📷 Foto <span class="photo-count-badge" id="pcnt-a2-2" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('a2-2','Eagle Beach','9h — Eagle Beach. Uma das 10 praias mais bonitas do mundo!')">✏️</button>
+        </div>
+        <div class="detail-panel" id="dp-a2-2">
+          <div class="detail-row"><span class="detail-label">📍 Localização</span><span>J.E. Irausquin Blvd s/n, a ~3km ao sul de Palm Beach</span></div>
+          <div class="detail-row"><span class="detail-label">🐢 Curiosidade</span><span>Ninho de tartarugas de couro! Tours noturnos de observação ~$25 pp</span></div>
+          <div class="detail-row"><span class="detail-label">📸 Foto ideal</span><span>O monumento da tartaruga na areia é o cartão postal da Eagle Beach</span></div>
+          <div class="detail-row"><span class="detail-label">💡 Dica</span><span>Chegue antes das 9h para pegar cadeiras na sombra das árvores</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-a2-2',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+  </div>
+  <div class="period">
+    <div class="period-label">☀️ TARDE</div>
+    <div class="activity" id="evt-a2-3">
+      <div class="activity-icon">🏙</div>
+      <div class="activity-body">
+        <div class="activity-title">15h — Oranjestad (Capital)</div>
+        <div class="activity-desc">Casas holandesas coloridas, shopping duty-free, Wilhelminapark. Fotos obrigatórias!</div>
+        <div class="activity-footer">
+          <span class="tag tag-free">Gratuito</span>
+          <button class="act-photo-btn" id="pbtn-a2-3" onclick="openPhotoModal('a2-3','Oranjestad Capital')">📷 Foto <span class="photo-count-badge" id="pcnt-a2-3" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('a2-3','Oranjestad','15h — Oranjestad, capital de Aruba.')">✏️</button>
+        </div>
+        <div class="detail-panel" id="dp-a2-3">
+          <div class="detail-row"><span class="detail-label">📍 Distância</span><span>~10 min de Palm Beach (6km)</span></div>
+          <div class="detail-row"><span class="detail-label">🛍 Shopping</span><span>Renaissance Mall, Paseo Herencia, Main Street duty-free</span></div>
+          <div class="detail-row"><span class="detail-label">📸 Melhor foto</span><span>Wilhelminapark com a fachada colonial holandesa ao fundo</span></div>
+          <div class="detail-row"><span class="detail-label">💡 Dica</span><span>Vá de tarde para evitar o calor e aproveitar o pôr do sol no porto</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-a2-3',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+    <div class="activity" id="evt-a2-4">
+      <div class="activity-icon">🍹</div>
+      <div class="activity-body">
+        <div class="activity-title">17h — MooMba Beach Bar</div>
+        <div class="activity-desc">Bar icônico de Palm Beach. Happy hour, ceviche, vista para o mar. Um dos mais queridos da ilha.</div>
+        <div class="activity-footer">
+          <span class="tag tag-price">Drinks $10-15</span>
+          <button class="act-photo-btn" id="pbtn-a2-4" onclick="openPhotoModal('a2-4','MooMba Beach Bar')">📷 Foto <span class="photo-count-badge" id="pcnt-a2-4" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('a2-4','MooMba Beach Bar','17h — MooMba Beach Bar. Happy hour, ceviche.')">✏️</button>
+        </div>
+        <div class="detail-panel" id="dp-a2-4">
+          <div class="detail-row"><span class="detail-label">📍 Endereço</span><span>J.E. Irausquin Blvd 230, Palm Beach</span></div>
+          <div class="detail-row"><span class="detail-label">💡 Dica</span><span>Pedir o "MooMba Mango Tango" — coquetel da casa. Happy hour 17h–19h</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-a2-4',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+  </div>
+  <div class="period">
+    <div class="period-label">🌙 JANTAR</div>
+    <div class="activity" id="evt-a2-5">
+      <div class="activity-icon">🌿</div>
+      <div class="activity-body">
+        <div class="activity-title">20h — Bohemian Restaurant</div>
+        <div class="activity-desc">Cozinha caribenha criativa, ambiente boêmio, live music às quartas. Menu degustação disponível.</div>
+        <div class="activity-footer">
+          <span class="tag tag-reserve">⚠️ Reserva: bohemianaruba.com</span>
+          <span class="tag tag-price">~$45-65 pp</span>
+          <button class="act-photo-btn" id="pbtn-a2-5" onclick="openPhotoModal('a2-5','Bohemian Restaurant')">📷 Foto <span class="photo-count-badge" id="pcnt-a2-5" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('a2-5','Bohemian Restaurant','20h — Bohemian Restaurant. Cozinha caribenha criativa.')">✏️</button>
+        </div>
+        <div class="detail-panel" id="dp-a2-5">
+          <div class="detail-row"><span class="detail-label">📍 Endereço</span><span>Noord 124, Aruba (perto de Palm Beach)</span></div>
+          <div class="detail-row"><span class="detail-label">📞 Reserva</span><span>bohemianaruba.com</span></div>
+          <div class="detail-row"><span class="detail-label">💡 Dica</span><span>Quinta tem live music. Pedir o peixe grelhado com molho de mango — especialidade da casa</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-a2-5',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="add-event-area" onclick="openAddEvent('aruba',2)">+ Adicionar evento ao Dia 2</div>
+
+  <!-- DIA 3 -->
+  <div class="day-header aruba">
+    <div class="day-num">Dia 3 · 13 de Março (Sexta)</div>
+    <h2>Norte Selvagem & Flamingos 🦩</h2>
+    <div class="loc">📍 Farol California · Malmok · Renaissance Island · Atardi</div>
+    <div class="day-actions"><button class="day-add-btn" onclick="openAddEvent('aruba',3)">+ Adicionar evento</button></div>
+  </div>
+  <div id="aruba-day-3-events">
+  <div class="period">
+    <div class="period-label">☀️ MANHÃ</div>
+    <div class="activity" id="evt-a3-1">
+      <div class="activity-icon">🔦</div>
+      <div class="activity-body">
+        <div class="activity-title">9h — Farol California</div>
+        <div class="activity-desc">Farol icônico no extremo norte. Vista 360° da ilha. Excelente para fotos ao amanhecer.</div>
+        <div class="activity-footer">
+          <span class="tag tag-free">Gratuito</span>
+          <button class="act-photo-btn" id="pbtn-a3-1" onclick="openPhotoModal('a3-1','Farol California')">📷 Foto <span class="photo-count-badge" id="pcnt-a3-1" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('a3-1','Farol California','9h — Farol California no extremo norte. Vista 360°.')">✏️</button>
+        </div>
+        <div class="detail-panel" id="dp-a3-1">
+          <div class="detail-row"><span class="detail-label">📍 Localização</span><span>Punta Brabo, extremo norte de Aruba</span></div>
+          <div class="detail-row"><span class="detail-label">📸 Foto ideal</span><span>Subir ao farol — vista panorâmica de todo o norte da ilha e do mar turquesa</span></div>
+          <div class="detail-row"><span class="detail-label">🏪 No local</span><span>Restaurante California Lighthouse com vista incrível — bom para almoço</span></div>
+          <div class="detail-row"><span class="detail-label">💡 Dica</span><span>Fazer rota norte: Farol → Fábrica Aloe → Malmok → Arashi em sequência</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-a3-1',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+    <div class="activity" id="evt-a3-2">
+      <div class="activity-icon">🌿</div>
+      <div class="activity-body">
+        <div class="activity-title">10h30 — Fábrica de Aloe Vera</div>
+        <div class="activity-desc">Aruba Aloe — fábrica histórica. Tour gratuito pelos campos de aloe. Loja com produtos exclusivos.</div>
+        <div class="activity-footer">
+          <span class="tag tag-free">Tour gratuito</span>
+          <button class="act-photo-btn" id="pbtn-a3-2" onclick="openPhotoModal('a3-2','Fábrica de Aloe Aruba')">📷 Foto <span class="photo-count-badge" id="pcnt-a3-2" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('a3-2','Fábrica de Aloe Vera','10h30 — Aruba Aloe, tour gratuito pelos campos.')">✏️</button>
+        </div>
+        <div class="detail-panel" id="dp-a3-2">
+          <div class="detail-row"><span class="detail-label">📍 Endereço</span><span>Pitastraat 115, Hato — a 10 min do Farol California</span></div>
+          <div class="detail-row"><span class="detail-label">🛍 Souvenirs</span><span>Comprar aqui é mais barato que nos aeroportos. Creme de aloe, protetor solar orgânico, sabonetes</span></div>
+          <div class="detail-row"><span class="detail-label">💡 Dica</span><span>O gel puro de aloe é ótimo para depois de praia. Ideal para trazer de souvenir!</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-a3-2',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+    <div class="activity" id="evt-a3-3">
+      <div class="activity-icon">🤿</div>
+      <div class="activity-body">
+        <div class="activity-title">12h — Malmok & Arashi Beach</div>
+        <div class="activity-desc">Snorkel com tartarugas marinhas! Praia de pedras pequenas, água cristalina. Menos turistas.</div>
+        <div class="activity-footer">
+          <span class="tag tag-free">Gratuito</span>
+          <span class="tag tag-tip">🐢 Tartarugas garantidas!</span>
+          <button class="act-photo-btn" id="pbtn-a3-3" onclick="openPhotoModal('a3-3','Malmok Beach snorkel')">📷 Foto <span class="photo-count-badge" id="pcnt-a3-3" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('a3-3','Malmok e Arashi Beach','12h — Snorkel com tartarugas marinhas!')">✏️</button>
+        </div>
+        <div class="detail-panel" id="dp-a3-3">
+          <div class="detail-row"><span class="detail-label">📍 Localização</span><span>Malmokweg, a ~3km ao norte de Palm Beach</span></div>
+          <div class="detail-row"><span class="detail-label">🐢 Mergulho</span><span>Tartarugas verdes comem algas nas pedras rasas. Também há corais e peixes coloridos</span></div>
+          <div class="detail-row"><span class="detail-label">💡 Dica</span><span>Entrar pelo lado esquerdo de Arashi — mais tartarugas. Levar kit de snorkel próprio</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-a3-3',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+  </div>
+  <div class="period">
+    <div class="period-label">☀️ TARDE — DESTAQUE DA VIAGEM</div>
+    <div class="activity" id="evt-a3-4">
+      <div class="activity-icon">🦩</div>
+      <div class="activity-body">
+        <div class="activity-title">15h — Renaissance Private Island</div>
+        <div class="activity-desc">IMPERDÍVEL! Ilha privada com flamingos na praia. Barco + almoço/lanche + 1 drinque inclusos. Lugares limitados!</div>
+        <div class="activity-footer">
+          <span class="tag tag-reserve">⚠️ RESERVA URGENTE: +297 583-6000</span>
+          <span class="tag tag-price">~$125 pp</span>
+          <button class="act-photo-btn" id="pbtn-a3-4" onclick="openPhotoModal('a3-4','Renaissance Island Flamingos')">📷 Foto <span class="photo-count-badge" id="pcnt-a3-4" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('a3-4','Renaissance Island','15h — Renaissance Private Island. Flamingos na praia!')">✏️</button>
+        </div>
+        <div class="detail-panel" id="dp-a3-4">
+          <div class="detail-row"><span class="detail-label">📍 Embarque</span><span>Cais do Renaissance Ocean Suites, Oranjestad</span></div>
+          <div class="detail-row"><span class="detail-label">📞 Reserva</span><span>+297 583-6000 — reservar com 2-3 semanas de antecedência!</span></div>
+          <div class="detail-row"><span class="detail-label">💰 Inclui</span><span>Barco de ida e volta, acesso à ilha, 1 drinque, espreguiçadeiras</span></div>
+          <div class="detail-row"><span class="detail-label">🦩 Flamingos</span><span>Flamingos semisselvagens caminham pela praia. Podem se aproximar! Não alimentar.</span></div>
+          <div class="detail-row"><span class="detail-label">💡 Dica</span><span>Ir às 15h evita a multidão do meio-dia. Levar câmera impermeável!</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-a3-4',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+  </div>
+  <div class="period">
+    <div class="period-label">🌙 JANTAR</div>
+    <div class="activity" id="evt-a3-5">
+      <div class="activity-icon">🦞</div>
+      <div class="activity-body">
+        <div class="activity-title">20h — Atardi at Aruba Marriott</div>
+        <div class="activity-desc">Pés na areia, frutos do mar, cozinha caribenha, tiki torches, música ao vivo. Pôr do sol deslumbrante.</div>
+        <div class="activity-footer">
+          <span class="tag tag-reserve">⚠️ Reserva: +297 520-6666</span>
+          <span class="tag tag-price">~$50-80 pp</span>
+          <button class="act-photo-btn" id="pbtn-a3-5" onclick="openPhotoModal('a3-5','Atardi Marriott jantar')">📷 Foto <span class="photo-count-badge" id="pcnt-a3-5" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('a3-5','Atardi Marriott','20h — Atardi. Pés na areia, frutos do mar.')">✏️</button>
+        </div>
+        <div class="detail-panel" id="dp-a3-5">
+          <div class="detail-row"><span class="detail-label">📍 Endereço</span><span>Aruba Marriott, J.E. Irausquin Blvd 101, Palm Beach</span></div>
+          <div class="detail-row"><span class="detail-label">📞 Reserva</span><span>+297 520-6666 ou OpenTable</span></div>
+          <div class="detail-row"><span class="detail-label">💡 Dica</span><span>Mesa na beira da água é a melhor. Pedir com antecedência ao reservar. O rum punch é incrível!</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-a3-5',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="add-event-area" onclick="openAddEvent('aruba',3)">+ Adicionar evento ao Dia 3</div>
+
+  <!-- DIA 4 -->
+  <div class="day-header aruba">
+    <div class="day-num">Dia 4 · 14 de Março (Sábado)</div>
+    <h2>Sul da Ilha & Vida Noturna</h2>
+    <div class="loc">📍 Druif · Zeerovers · Reflexions · AZAR · Casino</div>
+    <div class="day-actions"><button class="day-add-btn" onclick="openAddEvent('aruba',4)">+ Adicionar evento</button></div>
+  </div>
+  <div id="aruba-day-4-events">
+  <div class="period">
+    <div class="period-label">☀️ MANHÃ</div>
+    <div class="activity" id="evt-a4-1">
+      <div class="activity-icon">🏖</div>
+      <div class="activity-body">
+        <div class="activity-title">9h30 — Druif / Manchebo Beach</div>
+        <div class="activity-desc">Sul de Eagle Beach. Estreita, sem multidão, palmeiras naturais. Ideal para fotos românticas.</div>
+        <div class="activity-footer">
+          <span class="tag tag-free">Gratuito</span>
+          <button class="act-photo-btn" id="pbtn-a4-1" onclick="openPhotoModal('a4-1','Druif Beach')">📷 Foto <span class="photo-count-badge" id="pcnt-a4-1" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('a4-1','Druif Beach','9h30 — Druif / Manchebo Beach. Sul de Eagle Beach.')">✏️</button>
+        </div>
+      </div>
+    </div>
+    <div class="activity" id="evt-a4-2">
+      <div class="activity-icon">🐟</div>
+      <div class="activity-body">
+        <div class="activity-title">11h — Zeerovers (Savaneta)</div>
+        <div class="activity-desc">Cais de pesca local. Frutos do mar fresquíssimos fritos na hora. Mesas à beira-d'água. Autêntico!</div>
+        <div class="activity-footer">
+          <span class="tag tag-price">~$15-20 pp</span>
+          <span class="tag tag-tip">Chegar cedo — esgota rápido!</span>
+          <button class="act-photo-btn" id="pbtn-a4-2" onclick="openPhotoModal('a4-2','Zeerovers Savaneta')">📷 Foto <span class="photo-count-badge" id="pcnt-a4-2" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('a4-2','Zeerovers Savaneta','11h — Frutos do mar fritos na hora no cais de pesca.')">✏️</button>
+        </div>
+        <div class="detail-panel" id="dp-a4-2">
+          <div class="detail-row"><span class="detail-label">📍 Endereço</span><span>Savaneta 239, sul da ilha — ~20 min de Palm Beach</span></div>
+          <div class="detail-row"><span class="detail-label">🕐 Horário</span><span>Ter–Dom 11h–17h (fecha quando acaba o peixe!)</span></div>
+          <div class="detail-row"><span class="detail-label">💡 Dica</span><span>Pedir o combo com peixe + camarão + batata frita. Comer na mesa à beira-mar. Trazer dinheiro em espécie!</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-a4-2',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+  </div>
+  <div class="period">
+    <div class="period-label">☀️ TARDE</div>
+    <div class="activity" id="evt-a4-3">
+      <div class="activity-icon">🏝</div>
+      <div class="activity-body">
+        <div class="activity-title">14h30 — Reflexions Beach Club</div>
+        <div class="activity-desc">Beach club completo direto na areia. Restaurante, bar, cadeiras com sombra, DJs.</div>
+        <div class="activity-footer">
+          <span class="tag tag-price">Cadeiras ~$10 pp/dia</span>
+          <button class="act-photo-btn" id="pbtn-a4-3" onclick="openPhotoModal('a4-3','Reflexions Beach Club')">📷 Foto <span class="photo-count-badge" id="pcnt-a4-3" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('a4-3','Reflexions Beach Club','14h30 — Beach club completo.')">✏️</button>
+        </div>
+        <div class="detail-panel" id="dp-a4-3">
+          <div class="detail-row"><span class="detail-label">📍 Endereço</span><span>J.E. Irausquin Blvd 230, Palm Beach</span></div>
+          <div class="detail-row"><span class="detail-label">💡 Dica</span><span>Sábado tem DJ — melhor dia! Pedir cama com sombreiro no deck elevado</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-a4-3',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+  </div>
+  <div class="period">
+    <div class="period-label">🌙 NOITE</div>
+    <div class="activity" id="evt-a4-4">
+      <div class="activity-icon">🔥</div>
+      <div class="activity-body">
+        <div class="activity-title">19h — AZAR Open Fire Cuisine</div>
+        <div class="activity-desc">Steakhouse de luxo com grelha ao fogo aberto. Ambiente sofisticado. Um dos melhores restaurantes de Aruba.</div>
+        <div class="activity-footer">
+          <span class="tag tag-reserve">⚠️ Reserva: azararuba.com</span>
+          <span class="tag tag-price">~$60-90 pp</span>
+          <button class="act-photo-btn" id="pbtn-a4-4" onclick="openPhotoModal('a4-4','AZAR Restaurant')">📷 Foto <span class="photo-count-badge" id="pcnt-a4-4" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('a4-4','AZAR Open Fire','19h — AZAR steakhouse. Grelha ao fogo aberto.')">✏️</button>
+        </div>
+        <div class="detail-panel" id="dp-a4-4">
+          <div class="detail-row"><span class="detail-label">📍 Endereço</span><span>J.E. Irausquin Blvd 85, Eagle Beach</span></div>
+          <div class="detail-row"><span class="detail-label">💡 Dica</span><span>Pedir o ribeye na brasa. A entrada de burrata com figo é excepcional. Reservar com 1 semana!</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-a4-4',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+    <div class="activity" id="evt-a4-5">
+      <div class="activity-icon">🎰</div>
+      <div class="activity-body">
+        <div class="activity-title">22h — Casino (opcional)</div>
+        <div class="activity-desc">Stellaris Casino (Marriott) ou Hyatt Casino — entrada gratuita. Ou: Gusto Nightclub para música latina.</div>
+        <div class="activity-footer">
+          <span class="tag tag-free">Entrada gratuita nos cassinos</span>
+          <button class="act-photo-btn" id="pbtn-a4-5" onclick="openPhotoModal('a4-5','Casino Aruba')">📷 Foto <span class="photo-count-badge" id="pcnt-a4-5" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('a4-5','Casino Aruba','22h — Stellaris Casino ou Hyatt Casino. Entrada gratuita.')">✏️</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="add-event-area" onclick="openAddEvent('aruba',4)">+ Adicionar evento ao Dia 4</div>
+
+  <!-- DIA 5 -->
+  <div class="day-header aruba">
+    <div class="day-num">Dia 5 · 15 de Março (Domingo)</div>
+    <h2>Natural Pool & Dinner Cruise ⛵</h2>
+    <div class="loc">📍 Natural Pool · Spa · Monforte Dinner Cruise</div>
+    <div class="day-actions"><button class="day-add-btn" onclick="openAddEvent('aruba',5)">+ Adicionar evento</button></div>
+  </div>
+  <div id="aruba-day-5-events">
+  <div class="period">
+    <div class="period-label">☀️ MANHÃ</div>
+    <div class="activity" id="evt-a5-1">
+      <div class="activity-icon">🪨</div>
+      <div class="activity-body">
+        <div class="activity-title">9h — Natural Pool (Conchi) — Tour 4×4</div>
+        <div class="activity-desc">Piscina natural de rocha no lado selvagem da ilha! Paisagem lunar única. Acesso apenas por 4×4.</div>
+        <div class="activity-footer">
+          <span class="tag tag-reserve">⚠️ Reserve antecipado!</span>
+          <span class="tag tag-price">~$60-80 pp</span>
+          <span class="tag tag-tip">Imperdível!</span>
+          <button class="act-photo-btn" id="pbtn-a5-1" onclick="openPhotoModal('a5-1','Natural Pool Conchi')">📷 Foto <span class="photo-count-badge" id="pcnt-a5-1" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('a5-1','Natural Pool Conchi','9h — Natural Pool. Tour 4×4 pelo lado selvagem.')">✏️</button>
+        </div>
+        <div class="detail-panel" id="dp-a5-1">
+          <div class="detail-row"><span class="detail-label">📍 Localização</span><span>Parque Nacional Arikok, lado leste de Aruba</span></div>
+          <div class="detail-row"><span class="detail-label">🚙 Acesso</span><span>Obrigatoriamente por tour 4×4 — ~2h de aventura no terreno rochoso</span></div>
+          <div class="detail-row"><span class="detail-label">🏊 A piscina</span><span>Formação natural de rochas cria uma piscina protegida no oceano. Água cristalina!</span></div>
+          <div class="detail-row"><span class="detail-label">💡 Dica</span><span>Levar sandália de borracha (rochas escorregadias) e snorkel. Reservar com 1 semana!</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-a5-1',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+  </div>
+  <div class="period">
+    <div class="period-label">☀️ TARDE</div>
+    <div class="activity" id="evt-a5-2">
+      <div class="activity-icon">💆</div>
+      <div class="activity-body">
+        <div class="activity-title">16h — Spa & Relaxamento</div>
+        <div class="activity-desc">Mandara Spa (Marriott) ou Aruba Marriott Spa. Massagem 1h antes da última noite especial.</div>
+        <div class="activity-footer">
+          <span class="tag tag-price">~$80-120 pp/1h</span>
+          <button class="act-photo-btn" id="pbtn-a5-2" onclick="openPhotoModal('a5-2','Spa Aruba')">📷 Foto <span class="photo-count-badge" id="pcnt-a5-2" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('a5-2','Spa Aruba','16h — Spa. Massagem relaxante antes do cruzeiro.')">✏️</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="period">
+    <div class="period-label">🌅 NOITE ESPECIAL</div>
+    <div class="activity" id="evt-a5-3">
+      <div class="activity-icon">⛵</div>
+      <div class="activity-body">
+        <div class="activity-title">17h — Monforte Dinner Cruise</div>
+        <div class="activity-desc">Cruzeiro ao pôr do sol com jantar de 3 pratos e open bar. Saída do Pelican Pier.</div>
+        <div class="activity-footer">
+          <span class="tag tag-reserve">⚠️ RESERVA: +297 586-1603</span>
+          <span class="tag tag-price">~$90-120 pp</span>
+          <button class="act-photo-btn" id="pbtn-a5-3" onclick="openPhotoModal('a5-3','Monforte Dinner Cruise')">📷 Foto <span class="photo-count-badge" id="pcnt-a5-3" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('a5-3','Monforte Dinner Cruise','17h — Cruzeiro ao pôr do sol com jantar e open bar.')">✏️</button>
+        </div>
+        <div class="detail-panel" id="dp-a5-3">
+          <div class="detail-row"><span class="detail-label">📍 Embarque</span><span>Pelican Pier, Palm Beach</span></div>
+          <div class="detail-row"><span class="detail-label">📞 Reserva</span><span>+297 586-1603 — confirmar disponibilidade para domingo!</span></div>
+          <div class="detail-row"><span class="detail-label">🍷 Inclui</span><span>Jantar 3 pratos + open bar (rum, vinho, cerveja, refrigerante) + música ao vivo</span></div>
+          <div class="detail-row"><span class="detail-label">💡 Dica</span><span>Ficar na proa para o pôr do sol. Levar casaco leve — ventilado no mar!</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-a5-3',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="add-event-area" onclick="openAddEvent('aruba',5)">+ Adicionar evento ao Dia 5</div>
+
+  <!-- DIA 6 MANHÃ -->
+  <div class="day-header aruba">
+    <div class="day-num">Dia 6 · 16 de Março (Segunda) — Manhã</div>
+    <h2>Partida para Curaçao ✈️</h2>
+    <div class="loc">📍 Aeroporto AUA → Aeroporto Hato CUR</div>
+  </div>
+  <div id="aruba-day-6-events">
+  <div class="period">
+    <div class="activity" id="evt-a6-1">
+      <div class="activity-icon">⏰</div>
+      <div class="activity-body">
+        <div class="activity-title">6h — Check-out & café da manhã rápido</div>
+        <div class="activity-desc">Desfrutar último café caribenho antes da partida.</div>
+        <div class="activity-footer">
+          <button class="act-photo-btn" id="pbtn-a6-1" onclick="openPhotoModal('a6-1','Check-out Aruba')">📷 Foto <span class="photo-count-badge" id="pcnt-a6-1" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('a6-1','Check-out Aruba','6h — Check-out e último café da manhã em Aruba.')">✏️</button>
+        </div>
+      </div>
+    </div>
+    <div class="activity" id="evt-a6-2">
+      <div class="activity-icon">✈️</div>
+      <div class="activity-body">
+        <div class="activity-title">8h30 — Voo Aruba → Curaçao</div>
+        <div class="activity-desc">Duração: ~30 minutos. Chegada 9h no Aeroporto Hato de Curaçao.</div>
+        <div class="activity-footer">
+          <button class="act-photo-btn" id="pbtn-a6-2" onclick="openPhotoModal('a6-2','Voo Aruba Curaçao')">📷 Foto <span class="photo-count-badge" id="pcnt-a6-2" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('a6-2','Voo AUA→CUR','8h30 — Voo para Curaçao. ~30 minutos.')">✏️</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="add-event-area" onclick="openAddEvent('aruba',6)">+ Adicionar evento ao Dia 6 (manhã)</div>
+
+</div><!-- end aruba tab -->
+
+<!-- ============ CURAÇAO ============ -->
+<div class="content" id="tab-curacao">
+
+  <!-- DIA 6 TARDE -->
+  <div class="day-header curacao">
+    <div class="day-num">Dia 6 (tarde) · 16 de Março (Segunda)</div>
+    <h2>Chegada em Curaçao 🌊</h2>
+    <div class="loc">📍 Willemstad UNESCO · Pietermaai · Kokomo · Gouverneur</div>
+    <div class="day-actions"><button class="day-add-btn" onclick="openAddEvent('curacao',6)">+ Adicionar evento</button></div>
+  </div>
+  <div id="curacao-day-6-events">
+  <div class="period">
+    <div class="period-label cur">☀️ TARDE</div>
+    <div class="activity" id="evt-c6-1">
+      <div class="activity-icon">🏛</div>
+      <div class="activity-body">
+        <div class="activity-title">12h — Willemstad UNESCO!</div>
+        <div class="activity-desc">Handelskade colorido, Ponte Rainha Emma flutuante, Punda e Otrobanda. As fotos mais bonitas da viagem!</div>
+        <div class="activity-footer">
+          <span class="tag tag-free">Gratuito</span>
+          <button class="act-photo-btn" id="pbtn-c6-1" onclick="openPhotoModal('c6-1','Willemstad UNESCO')">📷 Foto <span class="photo-count-badge" id="pcnt-c6-1" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('c6-1','Willemstad','12h — Willemstad. Casas coloridas UNESCO.')">✏️</button>
+        </div>
+        <div class="detail-panel cur" id="dp-c6-1">
+          <div class="detail-row"><span class="detail-label">📍 Distância</span><span>~15 min de St. Marie (12km)</span></div>
+          <div class="detail-row"><span class="detail-label">📸 Melhor foto</span><span>Handelskade (fila de casas coloridas refletidas no canal) — lado Otrobanda às 11h</span></div>
+          <div class="detail-row"><span class="detail-label">🌉 Ponte Emma</span><span>Ponte flutuante que abre para navios. Gratuita para pedestres. Foto obrigatória!</span></div>
+          <div class="detail-row"><span class="detail-label">💡 Dica</span><span>Ir a pé de Punda para Otrobanda pela ponte. À noite as casas são iluminadas — linda para o jantar!</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-c6-1',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+    <div class="activity" id="evt-c6-2">
+      <div class="activity-icon">🍲</div>
+      <div class="activity-body">
+        <div class="activity-title">13h30 — Plasa Bieu (Mercado Velho)</div>
+        <div class="activity-desc">6 restaurantes locais com cozinha krioyo autêntica. Karni stoba, red snapper com funchi. O mais autêntico!</div>
+        <div class="activity-footer">
+          <span class="tag tag-price">~$12-18 pp</span>
+          <button class="act-photo-btn" id="pbtn-c6-2" onclick="openPhotoModal('c6-2','Plasa Bieu mercado')">📷 Foto <span class="photo-count-badge" id="pcnt-c6-2" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('c6-2','Plasa Bieu','13h30 — Mercado Velho. Cozinha local krioyo.')">✏️</button>
+        </div>
+        <div class="detail-panel cur" id="dp-c6-2">
+          <div class="detail-row"><span class="detail-label">📍 Endereço</span><span>Wilhelminaplein, Punda, Willemstad</span></div>
+          <div class="detail-row"><span class="detail-label">🍽 Pratos</span><span>Karni stoba (ensopado), red snapper com funchi, keshi yena (queijo recheado)</span></div>
+          <div class="detail-row"><span class="detail-label">💡 Dica</span><span>Escolher a senhora que parece mais animada — geralmente a comida mais gostosa! Apontando para o prato que quer</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-c6-2',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+    <div class="activity" id="evt-c6-3">
+      <div class="activity-icon">🎨</div>
+      <div class="activity-body">
+        <div class="activity-title">15h — Pietermaai District</div>
+        <div class="activity-desc">Bairro mais instagramável! Casas holandesas coloridas restauradas, bares, galerias de arte, street art.</div>
+        <div class="activity-footer">
+          <span class="tag tag-free">Gratuito</span>
+          <button class="act-photo-btn" id="pbtn-c6-3" onclick="openPhotoModal('c6-3','Pietermaai District')">📷 Foto <span class="photo-count-badge" id="pcnt-c6-3" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('c6-3','Pietermaai District','15h — Bairro colorido e instagramável.')">✏️</button>
+        </div>
+        <div class="detail-panel cur" id="dp-c6-3">
+          <div class="detail-row"><span class="detail-label">📍 Localização</span><span>Pietermaai 41, a 5 min a pé de Willemstad</span></div>
+          <div class="detail-row"><span class="detail-label">📸 Foto ideal</span><span>Fachadas coloridas da Rua Pietermaai com palmeiras e bougainvillea</span></div>
+          <div class="detail-row"><span class="detail-label">🍸 Bares</span><span>Mundo Bizarro, Netto Bar (mais antigo da ilha), Penha Lounge</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-c6-3',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+    <div class="activity" id="evt-c6-4">
+      <div class="activity-icon">🌴</div>
+      <div class="activity-body">
+        <div class="activity-title">17h30 — Kokomo Beach</div>
+        <div class="activity-desc">Pier para fotos, snorkel, pôr do sol. Segunda: happy hour + banda ao vivo!</div>
+        <div class="activity-footer">
+          <span class="tag tag-free">Entrada gratuita</span>
+          <span class="tag tag-price">Cadeiras ~$9 pp</span>
+          <button class="act-photo-btn" id="pbtn-c6-4" onclick="openPhotoModal('c6-4','Kokomo Beach')">📷 Foto <span class="photo-count-badge" id="pcnt-c6-4" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('c6-4','Kokomo Beach','17h30 — Kokomo Beach. Pier e pôr do sol.')">✏️</button>
+        </div>
+        <div class="detail-panel cur" id="dp-c6-4">
+          <div class="detail-row"><span class="detail-label">📍 Endereço</span><span>Bapor Kibra z/n, ~20 min de Willemstad</span></div>
+          <div class="detail-row"><span class="detail-label">💡 Dica</span><span>Segunda-feira tem banda ao vivo a partir das 18h — ótima recepção em Curaçao!</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-c6-4',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+  </div>
+  <div class="period">
+    <div class="period-label cur">🌙 JANTAR</div>
+    <div class="activity" id="evt-c6-5">
+      <div class="activity-icon">🌉</div>
+      <div class="activity-body">
+        <div class="activity-title">20h — Gouverneur de Rouville</div>
+        <div class="activity-desc">Vista deslumbrante para o Handelskade iluminado à noite. Cozinha local + internacional.</div>
+        <div class="activity-footer">
+          <span class="tag tag-reserve">Reserva: +599 9 462-9999</span>
+          <span class="tag tag-price">~$35-55 pp</span>
+          <button class="act-photo-btn" id="pbtn-c6-5" onclick="openPhotoModal('c6-5','Gouverneur de Rouville jantar')">📷 Foto <span class="photo-count-badge" id="pcnt-c6-5" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('c6-5','Gouverneur de Rouville','20h — Vista noturna para Handelskade.')">✏️</button>
+        </div>
+        <div class="detail-panel cur" id="dp-c6-5">
+          <div class="detail-row"><span class="detail-label">📍 Endereço</span><span>De Rouvilleweg 9, Otrobanda, Willemstad</span></div>
+          <div class="detail-row"><span class="detail-label">📞 Reserva</span><span>+599 9 462-9999</span></div>
+          <div class="detail-row"><span class="detail-label">💡 Dica</span><span>Pedir mesa na varanda com vista para o canal. À noite as luzes das casas coloridas são mágicas!</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-c6-5',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="add-event-area" onclick="openAddEvent('curacao',6)">+ Adicionar evento ao Dia 6 (tarde)</div>
+
+  <!-- DIA 7 -->
+  <div class="day-header curacao">
+    <div class="day-num">Dia 7 · 17 de Março (Terça)</div>
+    <h2>Praias do Noroeste 🐢</h2>
+    <div class="loc">📍 Grote Knip · Klein Knip · Playa Lagun · Playa Kalki</div>
+    <div class="day-actions"><button class="day-add-btn" onclick="openAddEvent('curacao',7)">+ Adicionar evento</button></div>
+  </div>
+  <div id="curacao-day-7-events">
+  <div class="period">
+    <div class="period-label cur">☀️ MANHÃ</div>
+    <div class="activity" id="evt-c7-1">
+      <div class="activity-icon">🏖</div>
+      <div class="activity-body">
+        <div class="activity-title">9h — Grote Knip (Kenepa Grandi)</div>
+        <div class="activity-desc">A praia mais LINDA de Curaçao! Penhascos brancos, água azul-turquesa profunda. Chegar cedo!</div>
+        <div class="activity-footer">
+          <span class="tag tag-free">Gratuito</span>
+          <span class="tag tag-tip">🤿 Snorkel nas bordas da baía</span>
+          <button class="act-photo-btn" id="pbtn-c7-1" onclick="openPhotoModal('c7-1','Grote Knip Kenepa')">📷 Foto <span class="photo-count-badge" id="pcnt-c7-1" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('c7-1','Grote Knip','9h — A praia mais linda de Curaçao!')">✏️</button>
+        </div>
+        <div class="detail-panel cur" id="dp-c7-1">
+          <div class="detail-row"><span class="detail-label">📍 Localização</span><span>Knipweg, Bandabou — ~40 min de St. Marie</span></div>
+          <div class="detail-row"><span class="detail-label">📸 Foto perfeita</span><span>De cima do penhasco à esquerda — vista panorâmica da baía inteira</span></div>
+          <div class="detail-row"><span class="detail-row"><span class="detail-label">🤿 Snorkel</span><span>Peixes tropicais coloridos nas laterais da baía. Levar kit próprio!</span></div>
+          <div class="detail-row"><span class="detail-label">💡 Dica</span><span>Chegar antes das 9h — fica lotado de ônibus de turistas a partir das 10h. Domingo/segunda é mais tranquilo</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-c7-1',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+    <div class="activity" id="evt-c7-2">
+      <div class="activity-icon">🌊</div>
+      <div class="activity-body">
+        <div class="activity-title">11h — Klein Knip (Kenepa Chiki)</div>
+        <div class="activity-desc">5 min de Grote Knip. Menor, mais intimista. Piscina natural de água esverdeada. Igualmente linda!</div>
+        <div class="activity-footer">
+          <span class="tag tag-free">Gratuito</span>
+          <button class="act-photo-btn" id="pbtn-c7-2" onclick="openPhotoModal('c7-2','Klein Knip')">📷 Foto <span class="photo-count-badge" id="pcnt-c7-2" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('c7-2','Klein Knip','11h — Prainha intimista, 5 min de Grote Knip.')">✏️</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="period">
+    <div class="period-label cur">☀️ TARDE — DESTAQUE</div>
+    <div class="activity" id="evt-c7-3">
+      <div class="activity-icon">🐢</div>
+      <div class="activity-body">
+        <div class="activity-title">13h — Playa Lagun</div>
+        <div class="activity-desc">A praia das tartarugas marinhas! Baía estreita cercada de penhascos. Snorkel garantido com tartarugas.</div>
+        <div class="activity-footer">
+          <span class="tag tag-free">Gratuito</span>
+          <span class="tag tag-tip">🐢 Tartarugas garantidas!</span>
+          <button class="act-photo-btn" id="pbtn-c7-3" onclick="openPhotoModal('c7-3','Playa Lagun tartarugas')">📷 Foto <span class="photo-count-badge" id="pcnt-c7-3" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('c7-3','Playa Lagun','13h — Playa Lagun. Snorkel com tartarugas!')">✏️</button>
+        </div>
+        <div class="detail-panel cur" id="dp-c7-3">
+          <div class="detail-row"><span class="detail-label">📍 Localização</span><span>Lagun, Bandabou — ~5 min de Grote Knip</span></div>
+          <div class="detail-row"><span class="detail-label">🐢 Dica snorkel</span><span>Tartarugas ficam pastando algas no centro da baía, em área rasa. Não tocar! Observar de 2m de distância</span></div>
+          <div class="detail-row"><span class="detail-label">💡 Dica</span><span>Melhor snorkel de Curaçao para iniciantes — baía calma e rasa. Aluguel de snorkel no local ~$10</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-c7-3',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+    <div class="activity" id="evt-c7-4">
+      <div class="activity-icon">🍄</div>
+      <div class="activity-body">
+        <div class="activity-title">15h30 — Playa Kalki</div>
+        <div class="activity-desc">Corais em formato de cogumelo únicos no Caribe! Ótimo mergulho. Próximo a Klein Knip.</div>
+        <div class="activity-footer">
+          <span class="tag tag-free">Gratuito</span>
+          <button class="act-photo-btn" id="pbtn-c7-4" onclick="openPhotoModal('c7-4','Playa Kalki corais')">📷 Foto <span class="photo-count-badge" id="pcnt-c7-4" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('c7-4','Playa Kalki','15h30 — Corais em cogumelo. Ótimo mergulho.')">✏️</button>
+        </div>
+      </div>
+    </div>
+    <div class="activity" id="evt-c7-5">
+      <div class="activity-icon">🌅</div>
+      <div class="activity-body">
+        <div class="activity-title">17h30 — Playa Forti (pôr do sol)</div>
+        <div class="activity-desc">Vista épica! Cliff jumping opcional (8m) de uma rocha histórica. Drinks no bar local.</div>
+        <div class="activity-footer">
+          <span class="tag tag-free">Gratuito</span>
+          <button class="act-photo-btn" id="pbtn-c7-5" onclick="openPhotoModal('c7-5','Playa Forti pôr do sol')">📷 Foto <span class="photo-count-badge" id="pcnt-c7-5" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('c7-5','Playa Forti','17h30 — Pôr do sol e cliff jumping opcional.')">✏️</button>
+        </div>
+        <div class="detail-panel cur" id="dp-c7-5">
+          <div class="detail-row"><span class="detail-label">📍 Localização</span><span>Westpunt, extremo noroeste de Curaçao</span></div>
+          <div class="detail-row"><span class="detail-label">🌅 Pôr do sol</span><span>Um dos melhores de toda a ilha! Posicionar-se a oeste do bar para pegar o ângulo perfeito</span></div>
+          <div class="detail-row"><span class="detail-label">🏊 Cliff Jump</span><span>Pulo de ~8m da rocha histórica. Popular entre jovens — ver antes se sentir coragem!</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-c7-5',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+  </div>
+  <div class="period">
+    <div class="period-label cur">🌙 JANTAR</div>
+    <div class="activity" id="evt-c7-6">
+      <div class="activity-icon">🍴</div>
+      <div class="activity-body">
+        <div class="activity-title">20h — Kome Restaurant</div>
+        <div class="activity-desc">Um dos melhores de Curaçao. Cozinha contemporânea caribenha, ambiente chique casual.</div>
+        <div class="activity-footer">
+          <span class="tag tag-reserve">⚠️ Reserva: komecuracao.com</span>
+          <span class="tag tag-price">~$40-65 pp</span>
+          <button class="act-photo-btn" id="pbtn-c7-6" onclick="openPhotoModal('c7-6','Kome Restaurant')">📷 Foto <span class="photo-count-badge" id="pcnt-c7-6" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('c7-6','Kome Restaurant','20h — Melhor restaurante de Curaçao. Reservar!')">✏️</button>
+        </div>
+        <div class="detail-panel cur" id="dp-c7-6">
+          <div class="detail-row"><span class="detail-label">📍 Endereço</span><span>Fokkerweg 9, Willemstad</span></div>
+          <div class="detail-row"><span class="detail-label">📞 Reserva</span><span>komecuracao.com (obrigatório!)</span></div>
+          <div class="detail-row"><span class="detail-label">💡 Dica</span><span>Pedir o menu degustação de 4 pratos. O magret de pato com chimichurri de tamarindo é sensacional</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-c7-6',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="add-event-area" onclick="openAddEvent('curacao',7)">+ Adicionar evento ao Dia 7</div>
+
+  <!-- DIA 8 -->
+  <div class="day-header curacao">
+    <div class="day-num">Dia 8 · 18 de Março (Quarta)</div>
+    <h2>Praias Privadas & Beach Clubs</h2>
+    <div class="loc">📍 Cas Abao · Porto Mari · Mambo Beach · Sal</div>
+    <div class="day-actions"><button class="day-add-btn" onclick="openAddEvent('curacao',8)">+ Adicionar evento</button></div>
+  </div>
+  <div id="curacao-day-8-events">
+  <div class="period">
+    <div class="period-label cur">☀️ MANHÃ</div>
+    <div class="activity" id="evt-c8-1">
+      <div class="activity-icon">🏖</div>
+      <div class="activity-body">
+        <div class="activity-title">9h — Cas Abao Beach</div>
+        <div class="activity-desc">Uma das melhores praias do Caribe! Areia branca, água cristalina, infraestrutura completa.</div>
+        <div class="activity-footer">
+          <span class="tag tag-price">$6/carro + cadeiras $5-7 pp</span>
+          <span class="tag tag-tip">Top do Caribe!</span>
+          <button class="act-photo-btn" id="pbtn-c8-1" onclick="openPhotoModal('c8-1','Cas Abao Beach')">📷 Foto <span class="photo-count-badge" id="pcnt-c8-1" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('c8-1','Cas Abao Beach','9h — Uma das melhores praias do Caribe!')">✏️</button>
+        </div>
+        <div class="detail-panel cur" id="dp-c8-1">
+          <div class="detail-row"><span class="detail-label">📍 Localização</span><span>Banda Abou — ~35 min de Willemstad</span></div>
+          <div class="detail-row"><span class="detail-label">💰 Entrada</span><span>$6 por carro + aluguel de cadeiras $5-7 por pessoa</span></div>
+          <div class="detail-row"><span class="detail-label">🤿 Snorkel</span><span>Reef de coral a 50m da praia — peixes, raias e até tubarão-lixa ocasionalmente</span></div>
+          <div class="detail-row"><span class="detail-label">🍽 No local</span><span>Restaurante, bar, chuveiro, banheiro, aluguel de snorkel e caiaque</span></div>
+          <div class="detail-row"><span class="detail-label">💡 Dica</span><span>Chegar antes das 10h para pegar as melhores cadeiras na sombra. Quarta é mais tranquilo!</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-c8-1',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+    <div class="activity" id="evt-c8-2">
+      <div class="activity-icon">🐠</div>
+      <div class="activity-body">
+        <div class="activity-title">13h — Porto Mari Beach</div>
+        <div class="activity-desc">Dois recifes de coral distintos! Ideal para mergulho e snorkel avançado. Restaurante na praia.</div>
+        <div class="activity-footer">
+          <span class="tag tag-price">$3 pp entrada + cadeiras $3,50 pp</span>
+          <button class="act-photo-btn" id="pbtn-c8-2" onclick="openPhotoModal('c8-2','Porto Mari snorkel')">📷 Foto <span class="photo-count-badge" id="pcnt-c8-2" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('c8-2','Porto Mari','13h — Dois recifes de coral. Mergulho incrível!')">✏️</button>
+        </div>
+        <div class="detail-panel cur" id="dp-c8-2">
+          <div class="detail-row"><span class="detail-label">📍 Localização</span><span>Banda Abou — ~10 min de Cas Abao</span></div>
+          <div class="detail-row"><span class="detail-label">🤿 Double reef</span><span>Recife raso (3m) para snorkel + recife profundo (18m) para mergulho. Manta ray ocasional!</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-c8-2',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+  </div>
+  <div class="period">
+    <div class="period-label cur">🌅 TARDE / HAPPY HOUR</div>
+    <div class="activity" id="evt-c8-3">
+      <div class="activity-icon">🎉</div>
+      <div class="activity-body">
+        <div class="activity-title">17h — Mambo Beach Boulevard</div>
+        <div class="activity-desc">Beach club mais famoso! Happy hour, DJs, restaurantes, piscina. O coração da vida social de Curaçao.</div>
+        <div class="activity-footer">
+          <span class="tag tag-free">Entrada gratuita</span>
+          <span class="tag tag-price">Drinks $8-14</span>
+          <button class="act-photo-btn" id="pbtn-c8-3" onclick="openPhotoModal('c8-3','Mambo Beach Boulevard')">📷 Foto <span class="photo-count-badge" id="pcnt-c8-3" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('c8-3','Mambo Beach','17h — Beach club mais famoso de Curaçao.')">✏️</button>
+        </div>
+        <div class="detail-panel cur" id="dp-c8-3">
+          <div class="detail-row"><span class="detail-label">📍 Endereço</span><span>Bapor Kibra z/n, ~20 min de Willemstad</span></div>
+          <div class="detail-row"><span class="detail-label">💡 Dica</span><span>Quarta tem "après-beach" com DJ a partir das 17h. Pedir o Mambo Punch — coquetel da casa!</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-c8-3',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+  </div>
+  <div class="period">
+    <div class="period-label cur">🌙 JANTAR</div>
+    <div class="activity" id="evt-c8-4">
+      <div class="activity-icon">🧂</div>
+      <div class="activity-body">
+        <div class="activity-title">20h — Sal The Kitchen</div>
+        <div class="activity-desc">Frutos do mar frescos com toques caribenhos. Vista para o canal. Ambiente descontraído e sofisticado.</div>
+        <div class="activity-footer">
+          <span class="tag tag-reserve">Reserva: +599 9 461-4599</span>
+          <span class="tag tag-price">~$40-60 pp</span>
+          <button class="act-photo-btn" id="pbtn-c8-4" onclick="openPhotoModal('c8-4','Sal The Kitchen')">📷 Foto <span class="photo-count-badge" id="pcnt-c8-4" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('c8-4','Sal The Kitchen','20h — Frutos do mar. Vista para o canal.')">✏️</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="add-event-area" onclick="openAddEvent('curacao',8)">+ Adicionar evento ao Dia 8</div>
+
+  <!-- DIA 9 -->
+  <div class="day-header curacao">
+    <div class="day-num">Dia 9 · 19 de Março (Quinta)</div>
+    <h2>Cultura & Jan Thiel 🥂</h2>
+    <div class="loc">📍 Fort Nassau · Kura Hulanda · Jan Thiel · The Wine Cellar</div>
+    <div class="day-actions"><button class="day-add-btn" onclick="openAddEvent('curacao',9)">+ Adicionar evento</button></div>
+  </div>
+  <div id="curacao-day-9-events">
+  <div class="period">
+    <div class="period-label cur">☀️ MANHÃ</div>
+    <div class="activity" id="evt-c9-1">
+      <div class="activity-icon">🏰</div>
+      <div class="activity-body">
+        <div class="activity-title">10h — Fort Nassau</div>
+        <div class="activity-desc">Forte do século XVIII com vista 360° de toda Willemstad. Restaurante renomado no topo!</div>
+        <div class="activity-footer">
+          <span class="tag tag-reserve">Reserva jantar: +599 9 461-3086</span>
+          <span class="tag tag-free">Vista gratuita</span>
+          <button class="act-photo-btn" id="pbtn-c9-1" onclick="openPhotoModal('c9-1','Fort Nassau vista')">📷 Foto <span class="photo-count-badge" id="pcnt-c9-1" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('c9-1','Fort Nassau','10h — Forte histórico. Vista 360° de Willemstad.')">✏️</button>
+        </div>
+        <div class="detail-panel cur" id="dp-c9-1">
+          <div class="detail-row"><span class="detail-label">📍 Endereço</span><span>Fort Nassauweg z/n, Willemstad — acesso de carro</span></div>
+          <div class="detail-row"><span class="detail-label">📸 Melhor foto</span><span>Vista panorâmica do porto com os navios de cruzeiro e Willemstad ao fundo</span></div>
+          <div class="detail-row"><span class="detail-label">💡 Dica</span><span>Ir de manhã para a vista — pôr do sol é para quem janta no restaurante do forte</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-c9-1',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+    <div class="activity" id="evt-c9-2">
+      <div class="activity-icon">🏛</div>
+      <div class="activity-body">
+        <div class="activity-title">11h30 — Kura Hulanda Museum</div>
+        <div class="activity-desc">Museu da história africana e do tráfico de escravos. Um dos mais importantes do Caribe. Impactante.</div>
+        <div class="activity-footer">
+          <span class="tag tag-price">~$12 pp</span>
+          <button class="act-photo-btn" id="pbtn-c9-2" onclick="openPhotoModal('c9-2','Kura Hulanda Museum')">📷 Foto <span class="photo-count-badge" id="pcnt-c9-2" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('c9-2','Kura Hulanda Museum','11h30 — Museu história africana. ~2h de visita.')">✏️</button>
+        </div>
+        <div class="detail-panel cur" id="dp-c9-2">
+          <div class="detail-row"><span class="detail-label">📍 Endereço</span><span>Klipstraat 9, Otrobanda, Willemstad</span></div>
+          <div class="detail-row"><span class="detail-label">🕐 Horário</span><span>Seg–Sáb 9h30–17h · Duração recomendada: ~2h</span></div>
+          <div class="detail-row"><span class="detail-label">💡 Relevância</span><span>Coleção de arte e objetos africanos únicos no mundo. Conta a história do tráfico pelo Atlântico</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-c9-2',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+  </div>
+  <div class="period">
+    <div class="period-label cur">☀️ TARDE</div>
+    <div class="activity" id="evt-c9-3">
+      <div class="activity-icon">🏊</div>
+      <div class="activity-body">
+        <div class="activity-title">14h — Jan Thiel Beach</div>
+        <div class="activity-desc">Beach club com piscina! Praia privada completa, bar, restaurante, atividades aquáticas.</div>
+        <div class="activity-footer">
+          <span class="tag tag-price">$3 pp entrada + cadeiras</span>
+          <button class="act-photo-btn" id="pbtn-c9-3" onclick="openPhotoModal('c9-3','Jan Thiel Beach')">📷 Foto <span class="photo-count-badge" id="pcnt-c9-3" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('c9-3','Jan Thiel Beach','14h — Beach club com piscina! ~20 min de Willemstad.')">✏️</button>
+        </div>
+        <div class="detail-panel cur" id="dp-c9-3">
+          <div class="detail-row"><span class="detail-label">📍 Localização</span><span>Jan Thiel Bay — ~20 min de Willemstad</span></div>
+          <div class="detail-row"><span class="detail-label">🏊 Piscina</span><span>Piscina com bar molhado integrado. Perfeita para relaxar à tarde</span></div>
+          <div class="detail-row"><span class="detail-label">💡 Dica</span><span>Alugar um kayak (~$15/h) para explorar a baía. Quinta é mais tranquilo que fins de semana</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-c9-3',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+  </div>
+  <div class="period">
+    <div class="period-label cur">🌙 JANTAR ESPECIAL</div>
+    <div class="activity" id="evt-c9-4">
+      <div class="activity-icon">🥂</div>
+      <div class="activity-body">
+        <div class="activity-title">20h — The Wine Cellar</div>
+        <div class="activity-desc">O jantar mais romântico da viagem! Cave histórica do século XIX, adega com 600 rótulos, menu excepcional.</div>
+        <div class="activity-footer">
+          <span class="tag tag-reserve">⚠️ RESERVA URGENTE: +599 9 461-2178</span>
+          <span class="tag tag-price">~$60-90 pp</span>
+          <button class="act-photo-btn" id="pbtn-c9-4" onclick="openPhotoModal('c9-4','The Wine Cellar Curaçao')">📷 Foto <span class="photo-count-badge" id="pcnt-c9-4" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('c9-4','The Wine Cellar','20h — Jantar mais romântico da viagem. Reservar com urgência!')">✏️</button>
+        </div>
+        <div class="detail-panel cur" id="dp-c9-4">
+          <div class="detail-row"><span class="detail-label">📍 Endereço</span><span>Concordiastraat 4, Otrobanda, Willemstad</span></div>
+          <div class="detail-row"><span class="detail-label">📞 Reserva</span><span>+599 9 461-2178 — RESERVAR com pelo menos 2 semanas!</span></div>
+          <div class="detail-row"><span class="detail-label">🏺 Ambiente</span><span>Cave histórica do século XIX completamente preservada. Iluminação a velas, adega à vista</span></div>
+          <div class="detail-row"><span class="detail-label">🍷 Destaques</span><span>Mais de 600 rótulos de vinhos. Menu degustation de 5 pratos. Harmonização incluída</span></div>
+          <div class="detail-row"><span class="detail-label">💡 Dica</span><span>Pedir a mesa na adega principal. O magret de pato com redução de vinho do Porto é espetacular!</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-c9-4',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="add-event-area" onclick="openAddEvent('curacao',9)">+ Adicionar evento ao Dia 9</div>
+
+  <!-- DIA 10 -->
+  <div class="day-header curacao">
+    <div class="day-num">Dia 10 · 20 de Março (Sexta)</div>
+    <h2>Último Dia & Partida 🌅</h2>
+    <div class="loc">📍 Blue Bay · Souvenirs Willemstad · Aeroporto Hato</div>
+    <div class="day-actions"><button class="day-add-btn" onclick="openAddEvent('curacao',10)">+ Adicionar evento</button></div>
+  </div>
+  <div id="curacao-day-10-events">
+  <div class="period">
+    <div class="period-label cur">☀️ MANHÃ</div>
+    <div class="activity" id="evt-c10-1">
+      <div class="activity-icon">🏖</div>
+      <div class="activity-body">
+        <div class="activity-title">9h — Blue Bay Beach</div>
+        <div class="activity-desc">Última praia! Kayak de vidro transparente disponível. Mergulho final em Curaçao.</div>
+        <div class="activity-footer">
+          <span class="tag tag-price">$7,50 pp entrada</span>
+          <button class="act-photo-btn" id="pbtn-c10-1" onclick="openPhotoModal('c10-1','Blue Bay Beach')">📷 Foto <span class="photo-count-badge" id="pcnt-c10-1" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('c10-1','Blue Bay Beach','9h — Última praia. Kayak de vidro disponível.')">✏️</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="period">
+    <div class="period-label cur">☀️ TARDE</div>
+    <div class="activity" id="evt-c10-2">
+      <div class="activity-icon">🛍</div>
+      <div class="activity-body">
+        <div class="activity-title">14h — Souvenirs em Willemstad</div>
+        <div class="activity-desc">Última chance para comprar Blue Curaçao original (Senior Distillery), Chichi coloridas, sal local.</div>
+        <div class="activity-footer">
+          <span class="tag tag-tip">🔵 Blue Curaçao ORIGINAL = Senior Triple Sec</span>
+          <button class="act-photo-btn" id="pbtn-c10-2" onclick="openPhotoModal('c10-2','Souvenirs Curaçao')">📷 Foto <span class="photo-count-badge" id="pcnt-c10-2" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('c10-2','Souvenirs Willemstad','14h — Compras finais. Blue Curaçao, Chichi, sal.')">✏️</button>
+        </div>
+        <div class="detail-panel cur" id="dp-c10-2">
+          <div class="detail-row"><span class="detail-label">🔵 Blue Curaçao</span><span>Senior Curaçao Distillery — a fábrica original! Degustação gratuita e compra direto na fonte</span></div>
+          <div class="detail-row"><span class="detail-label">🎨 Chichi</span><span>Estátuas coloridas símbolo de Curaçao. Artesanato local único. Lojas em Pietermaai</span></div>
+          <div class="detail-row"><span class="detail-label">📍 Compras</span><span>Renaissance Mall (duty-free), Penha (loja histórica desde 1708), Pietermaai boutiques</span></div>
+        </div>
+        <button class="detail-toggle-btn" onclick="toggleDetail('dp-c10-2',this)">ℹ️ Mais detalhes</button>
+      </div>
+    </div>
+    <div class="activity" id="evt-c10-3">
+      <div class="activity-icon">✈️</div>
+      <div class="activity-body">
+        <div class="activity-title">18h30 — Partida Aeroporto Hato</div>
+        <div class="activity-desc">Chegar 3h antes: 15h30. Devolver carro nos balcões do aeroporto. Boa viagem! 🌴</div>
+        <div class="activity-footer">
+          <span class="tag tag-tip">⏰ Chegar ao aeroporto às 15h30!</span>
+          <button class="act-photo-btn" id="pbtn-c10-3" onclick="openPhotoModal('c10-3','Partida Curaçao')">📷 Foto <span class="photo-count-badge" id="pcnt-c10-3" style="display:none">0</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="add-event-area" onclick="openAddEvent('curacao',10)">+ Adicionar evento ao Dia 10</div>
+
+</div><!-- end curacao tab -->
+
+<!-- ============ HOSPEDAGEM ============ -->
+<div class="content" id="tab-hotels">
+  <div class="section-label">🌺 Aruba — 11 a 16 de Março</div>
+  <div class="hotel-card">
+    <div class="hotel-name">🏨 Palm Beach Plaza Resort</div>
+    <div class="hotel-subtitle">Palm Beach · Aruba · 5 noites</div>
+    <div class="place-tags">
+      <span class="tag tag-free">✅ Já reservado</span>
+      <span class="tag tag-addr">📍 Palm Beach</span>
+    </div>
+    <div class="place-desc">Resort à beira-mar na melhor localização de Aruba. A menos de 100m da Palm Beach. Piscina, restaurante, acesso direto à praia.</div>
+    <div class="place-details" id="hotel-aruba-details">
+      <div class="place-detail-row"><span class="place-detail-label">📍 Endereço</span><span class="place-detail-val">J.E. Irausquin Blvd, Palm Beach, Aruba</span></div>
+      <div class="place-detail-row"><span class="place-detail-label">📞 Telefone</span><span class="place-detail-val">+297 586-1000</span></div>
+      <div class="place-detail-row"><span class="place-detail-label">🏖 Praia</span><span class="place-detail-val">Acesso direto a Palm Beach — a 100m</span></div>
+      <div class="place-detail-row"><span class="place-detail-label">🍳 Café</span><span class="place-detail-val">Incluso no resort (verificar reserva)</span></div>
+      <div class="place-detail-row"><span class="place-detail-label">🚗 Estacionamento</span><span class="place-detail-val">Gratuito para hóspedes</span></div>
+      <div class="place-detail-row"><span class="place-detail-label">💡 Dica</span><span class="place-detail-val">Pedir quarto com vista para o mar ao fazer check-in. Locker para guardar malas após check-out</span></div>
+    </div>
+    <button class="expand-btn" onclick="togglePlaceDetails('hotel-aruba-details',this)">ℹ️ Ver detalhes</button>
+    <div style="margin-top:10px;">
+      <button class="act-photo-btn" id="pbtn-hotel-aruba" onclick="openPhotoModal('hotel-aruba','Hotel Palm Beach Aruba')">📷 Fotos da hospedagem <span class="photo-count-badge" id="pcnt-hotel-aruba" style="display:none">0</span></button>
+    </div>
+  </div>
+
+  <div class="section-label">🌊 Curaçao — 16 a 20 de Março</div>
+  <div class="hotel-card curacao">
+    <div class="hotel-name">🏨 Kontiki Beach Resort</div>
+    <div class="hotel-subtitle">St. Marie · Curaçao · 4 noites</div>
+    <div class="place-tags">
+      <span class="tag tag-free">✅ Já reservado</span>
+      <span class="tag tag-addr">📍 St. Marie</span>
+    </div>
+    <div class="place-desc">Resort tranquilo em St. Marie, com acesso à praia privada e snorkel na frente. A 15 min de Willemstad. Ambiente familiar e relaxado.</div>
+    <div class="place-details" id="hotel-curacao-details">
+      <div class="place-detail-row"><span class="place-detail-label">📍 Endereço</span><span class="place-detail-val">St. Marie z/n, Curaçao</span></div>
+      <div class="place-detail-row"><span class="place-detail-label">📞 Telefone</span><span class="place-detail-val">+599 9 864-0344</span></div>
+      <div class="place-detail-row"><span class="place-detail-label">🌊 Snorkel</span><span class="place-detail-val">Recife de coral direto na frente do resort — sem precisar de barco!</span></div>
+      <div class="place-detail-row"><span class="place-detail-label">🚗 Distâncias</span><span class="place-detail-val">Willemstad ~15 min · Praias noroeste ~30-40 min</span></div>
+      <div class="place-detail-row"><span class="place-detail-label">💡 Dica</span><span class="place-detail-val">Pedir quarto com vista para o mar ou bungalow na praia. Snorkel ao amanhecer é mágico!</span></div>
+    </div>
+    <button class="expand-btn" onclick="togglePlaceDetails('hotel-curacao-details',this)">ℹ️ Ver detalhes</button>
+    <div style="margin-top:10px;">
+      <button class="act-photo-btn" id="pbtn-hotel-curacao" onclick="openPhotoModal('hotel-curacao','Hotel St. Marie Curaçao')">📷 Fotos da hospedagem <span class="photo-count-badge" id="pcnt-hotel-curacao" style="display:none">0</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ AEROPORTOS ============ -->
+<div class="content" id="tab-airports">
+
+  <div class="airport-card">
+    <div class="airport-header">
+      <div class="airport-icon">🇧🇷</div>
+      <div><div class="airport-name">Florianópolis — Hercílio Luz</div><div class="airport-code">FLN · Florianópolis, SC, Brasil</div></div>
+    </div>
+    <div class="airport-flight-info">
+      <div class="flight-row"><span class="flight-label">✈️ Partida</span><span>11/03/2026 · Voo para Panamá/Aruba</span></div>
+      <div class="flight-row"><span class="flight-label">🏠 Chegada</span><span>20/03/2026 · Chegada de Curaçao</span></div>
+      <div class="flight-row"><span class="flight-label">⏰ Dica</span><span>Chegar 3h antes para voos internacionais</span></div>
+    </div>
+    <button class="act-photo-btn" id="pbtn-ap-fln" onclick="openPhotoModal('ap-fln','Aeroporto Florianópolis FLN')">📷 Fotos FLN <span class="photo-count-badge" id="pcnt-ap-fln" style="display:none">0</span></button>
+  </div>
+
+  <div class="airport-card">
+    <div class="airport-header">
+      <div class="airport-icon">🇵🇦</div>
+      <div><div class="airport-name">Panamá — Tocumen Int'l</div><div class="airport-code">PTY · Ciudad de Panamá, Panamá</div></div>
+    </div>
+    <div class="airport-flight-info">
+      <div class="flight-row"><span class="flight-label">🔄 Conexão</span><span>Conexão em trânsito FLN → AUA</span></div>
+      <div class="flight-row"><span class="flight-label">⏰ Layover</span><span>Verificar tempo de conexão — mínimo recomendado 2h</span></div>
+      <div class="flight-row"><span class="flight-label">🛍 Terminal</span><span>Duty-free extenso · Restaurantes · Lounges</span></div>
+      <div class="flight-row"><span class="flight-label">💡 Dica</span><span>Copa Lounge disponível para passageiros Copa/United</span></div>
+    </div>
+    <button class="act-photo-btn" id="pbtn-ap-pty" onclick="openPhotoModal('ap-pty','Aeroporto Panamá PTY')">📷 Fotos PTY <span class="photo-count-badge" id="pcnt-ap-pty" style="display:none">0</span></button>
+  </div>
+
+  <div class="airport-card">
+    <div class="airport-header">
+      <div class="airport-icon">🌺</div>
+      <div><div class="airport-name">Aruba — Reina Beatrix Int'l</div><div class="airport-code">AUA · Oranjestad, Aruba</div></div>
+    </div>
+    <div class="airport-flight-info">
+      <div class="flight-row"><span class="flight-label">✅ Chegada</span><span>11/03 · Chegada ~13h</span></div>
+      <div class="flight-row"><span class="flight-label">✈️ Partida</span><span>16/03 · Voo AUA→CUR 8h30 — chegar às 6h30!</span></div>
+      <div class="flight-row"><span class="flight-label">🚗 Aluguel</span><span>Balcões no saguão principal — Economy, Avis, Hertz, Budget</span></div>
+      <div class="flight-row"><span class="flight-label">💡 Dica</span><span>Imigração rápida para turistas. Câmbio no aeroporto (taxa alta — usar cartão!</span></div>
+    </div>
+    <button class="act-photo-btn" id="pbtn-ap-aua" onclick="openPhotoModal('ap-aua','Aeroporto Aruba AUA')">📷 Fotos AUA <span class="photo-count-badge" id="pcnt-ap-aua" style="display:none">0</span></button>
+  </div>
+
+  <div class="airport-card">
+    <div class="airport-header">
+      <div class="airport-icon">🌊</div>
+      <div><div class="airport-name">Curaçao — Hato Int'l</div><div class="airport-code">CUR · Willemstad, Curaçao</div></div>
+    </div>
+    <div class="airport-flight-info">
+      <div class="flight-row"><span class="flight-label">✅ Chegada</span><span>16/03 · Chegada ~9h (voo de 30 min de Aruba)</span></div>
+      <div class="flight-row"><span class="flight-label">✈️ Partida</span><span>20/03 · 18h30 — chegar às 15h30!</span></div>
+      <div class="flight-row"><span class="flight-label">🚗 Aluguel</span><span>Avis, Budget, Hertz nos balcões do aeroporto</span></div>
+      <div class="flight-row"><span class="flight-label">💡 Dica</span><span>Supermercado perto do aeroporto para comprar snacks e água antes de ir à hospedagem</span></div>
+    </div>
+    <button class="act-photo-btn" id="pbtn-ap-cur" onclick="openPhotoModal('ap-cur','Aeroporto Curaçao CUR')">📷 Fotos CUR <span class="photo-count-badge" id="pcnt-ap-cur" style="display:none">0</span></button>
+  </div>
+
+</div>
+
+<!-- ============ RESTAURANTES ============ -->
+<div class="content" id="tab-restaurants">
+  <div class="island-btns">
+    <button class="island-btn active-a" onclick="switchIsland('ra',this)">🌺 Aruba</button>
+    <button class="island-btn" onclick="switchIsland('rc',this)">🌊 Curaçao</button>
+  </div>
+
+  <div class="island-section active" id="island-ra">
+    <div class="place-card">
+      <div class="place-name">🍽 Gianni's Restaurant</div>
+      <div class="place-subtitle">Italiano · Palm Beach · $$$$</div>
+      <div class="place-tags">
+        <span class="tag tag-reserve">⚠️ Reserva recomendada</span>
+        <span class="tag tag-price">~$40-60 pp</span>
+      </div>
+      <div class="place-desc">Italiano clássico com massa artesanal. Ambiente romântico com vista para a rua de Palm Beach.</div>
+      <div class="place-details" id="rest-gianni">
+        <div class="place-detail-row"><span class="place-detail-label">📍 Endereço</span><span class="place-detail-val">J.E. Irausquin Blvd 374, Palm Beach</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">📞 Reserva</span><span class="place-detail-val">+297 586-6665</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">🕐 Horário</span><span class="place-detail-val">18h–23h diariamente</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">⭐ Destaques</span><span class="place-detail-val">Burrata, risotto de frutos do mar, tagliatelle al tartufo</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">💡 Dica</span><span class="place-detail-val">Pedir mesa na varanda. Reservar 3-4 dias antes. Bons vinhos italianos importados</span></div>
+      </div>
+      <button class="expand-btn" onclick="togglePlaceDetails('rest-gianni',this)">ℹ️ Ver detalhes</button>
+    </div>
+
+    <div class="place-card">
+      <div class="place-name">🌿 Bohemian Restaurant</div>
+      <div class="place-subtitle">Caribenho Criativo · Noord · $$$$</div>
+      <div class="place-tags">
+        <span class="tag tag-reserve">⚠️ Reserva online</span>
+        <span class="tag tag-price">~$45-65 pp</span>
+      </div>
+      <div class="place-desc">Cozinha caribenha criativa com ingredientes locais. Live music às quintas. Menu degustação disponível.</div>
+      <div class="place-details" id="rest-bohemian">
+        <div class="place-detail-row"><span class="place-detail-label">📍 Endereço</span><span class="place-detail-val">Noord 124, Aruba</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">📞 Reserva</span><span class="place-detail-val">bohemianaruba.com</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">⭐ Destaques</span><span class="place-detail-val">Peixe do dia grelhado, mango soup, ceviche local</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">💡 Dica</span><span class="place-detail-val">Quinta tem live music das 20h. Menu degustação de 4 pratos é excelente custo-benefício</span></div>
+      </div>
+      <button class="expand-btn" onclick="togglePlaceDetails('rest-bohemian',this)">ℹ️ Ver detalhes</button>
+    </div>
+
+    <div class="place-card">
+      <div class="place-name">🦞 Atardi at Aruba Marriott</div>
+      <div class="place-subtitle">Frutos do Mar · Palm Beach · $$$$</div>
+      <div class="place-tags">
+        <span class="tag tag-reserve">⚠️ Reserva obrigatória</span>
+        <span class="tag tag-price">~$50-80 pp</span>
+      </div>
+      <div class="place-desc">Pés na areia, tiki torches, música ao vivo. Melhor jantar romântico de Aruba com vista para o mar.</div>
+      <div class="place-details" id="rest-atardi">
+        <div class="place-detail-row"><span class="place-detail-label">📍 Endereço</span><span class="place-detail-val">Aruba Marriott, J.E. Irausquin Blvd 101</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">📞 Reserva</span><span class="place-detail-val">+297 520-6666 ou OpenTable</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">⭐ Destaques</span><span class="place-detail-val">Lagosta grelhada, rum punch, sea bass, pôr do sol direto da mesa</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">💡 Dica</span><span class="place-detail-val">Pedir mesa na beira da água ao reservar. Música ao vivo qui e sex. Reservar com 1 semana!</span></div>
+      </div>
+      <button class="expand-btn" onclick="togglePlaceDetails('rest-atardi',this)">ℹ️ Ver detalhes</button>
+    </div>
+
+    <div class="place-card">
+      <div class="place-name">🔥 AZAR Open Fire Cuisine</div>
+      <div class="place-subtitle">Steakhouse · Eagle Beach · $$$$$</div>
+      <div class="place-tags">
+        <span class="tag tag-reserve">⚠️ Reserva obrigatória</span>
+        <span class="tag tag-price">~$60-90 pp</span>
+      </div>
+      <div class="place-desc">Grelha ao fogo aberto. O melhor steakhouse de Aruba. Ambiente sofisticado e moderno.</div>
+      <div class="place-details" id="rest-azar">
+        <div class="place-detail-row"><span class="place-detail-label">📍 Endereço</span><span class="place-detail-val">J.E. Irausquin Blvd 85, Eagle Beach</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">📞 Reserva</span><span class="place-detail-val">azararuba.com</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">⭐ Destaques</span><span class="place-detail-val">Ribeye na brasa, burrata com figo, sobremesa de chocolate belga</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">💡 Dica</span><span class="place-detail-val">Reservar com 1 semana! Pedir a mesa próxima à lareira a lenha. A carta de vinhos é excelente</span></div>
+      </div>
+      <button class="expand-btn" onclick="togglePlaceDetails('rest-azar',this)">ℹ️ Ver detalhes</button>
+    </div>
+
+    <div class="place-card">
+      <div class="place-name">🐟 Zeerovers (Savaneta)</div>
+      <div class="place-subtitle">Frutos do Mar · Savaneta · $</div>
+      <div class="place-tags">
+        <span class="tag tag-free">Sem reserva</span>
+        <span class="tag tag-price">~$15-20 pp</span>
+        <span class="tag tag-tip">Local autêntico!</span>
+      </div>
+      <div class="place-desc">Cais de pesca local. Frutos do mar frescos fritos na hora. Mesas à beira-d'água. O mais autêntico de Aruba.</div>
+      <div class="place-details" id="rest-zeerovers">
+        <div class="place-detail-row"><span class="place-detail-label">📍 Endereço</span><span class="place-detail-val">Savaneta 239, sul de Aruba (~20 min de Palm Beach)</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">🕐 Horário</span><span class="place-detail-val">Ter–Dom 11h–17h (fecha quando acaba o peixe!)</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">💵 Pagamento</span><span class="place-detail-val">Dinheiro em espécie preferido</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">💡 Dica</span><span class="place-detail-val">Combo peixe + camarão + batata frita a ~$18. Chegar antes das 12h!</span></div>
+      </div>
+      <button class="expand-btn" onclick="togglePlaceDetails('rest-zeerovers',this)">ℹ️ Ver detalhes</button>
+    </div>
+  </div>
+
+  <div class="island-section" id="island-rc">
+    <div class="place-card curacao">
+      <div class="place-name">🌉 Gouverneur de Rouville</div>
+      <div class="place-subtitle">Internacional · Otrobanda · $$$</div>
+      <div class="place-tags">
+        <span class="tag tag-reserve">Reserva recomendada</span>
+        <span class="tag tag-price">~$35-55 pp</span>
+      </div>
+      <div class="place-desc">Vista deslumbrante para o Handelskade iluminado. Cozinha local e internacional em mansão histórica.</div>
+      <div class="place-details" id="rest-gouverneur">
+        <div class="place-detail-row"><span class="place-detail-label">📍 Endereço</span><span class="place-detail-val">De Rouvilleweg 9, Otrobanda, Willemstad</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">📞 Reserva</span><span class="place-detail-val">+599 9 462-9999</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">⭐ Destaques</span><span class="place-detail-val">Vista noturna das casas coloridas, keshi yena, rum punch local</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">💡 Dica</span><span class="place-detail-val">Pedir mesa na varanda com vista para o canal. À noite as luzes são mágicas!</span></div>
+      </div>
+      <button class="expand-btn" onclick="togglePlaceDetails('rest-gouverneur',this)">ℹ️ Ver detalhes</button>
+    </div>
+
+    <div class="place-card curacao">
+      <div class="place-name">🍴 Kome Restaurant</div>
+      <div class="place-subtitle">Contemporâneo · Willemstad · $$$$</div>
+      <div class="place-tags">
+        <span class="tag tag-reserve">⚠️ Reserva obrigatória</span>
+        <span class="tag tag-price">~$40-65 pp</span>
+      </div>
+      <div class="place-desc">O melhor restaurante de Curaçao segundo a crítica especializada. Ingredientes locais com técnica contemporânea.</div>
+      <div class="place-details" id="rest-kome">
+        <div class="place-detail-row"><span class="place-detail-label">📍 Endereço</span><span class="place-detail-val">Fokkerweg 9, Willemstad</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">📞 Reserva</span><span class="place-detail-val">komecuracao.com (obrigatório!)</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">⭐ Destaques</span><span class="place-detail-val">Magret de pato com tamarindo, menu degustação 4 pratos, carta de vinhos</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">💡 Dica</span><span class="place-detail-val">Menu degustation de 4 pratos (~$65 pp) é a melhor experiência. Reservar com 2 semanas!</span></div>
+      </div>
+      <button class="expand-btn" onclick="togglePlaceDetails('rest-kome',this)">ℹ️ Ver detalhes</button>
+    </div>
+
+    <div class="place-card curacao">
+      <div class="place-name">🥂 The Wine Cellar</div>
+      <div class="place-subtitle">Fine Dining · Otrobanda · $$$$$</div>
+      <div class="place-tags">
+        <span class="tag tag-reserve">⚠️ RESERVA URGENTE</span>
+        <span class="tag tag-price">~$60-90 pp</span>
+      </div>
+      <div class="place-desc">O jantar mais romântico da viagem. Cave histórica do século XIX com 600 rótulos de vinhos. Experiência única!</div>
+      <div class="place-details" id="rest-winecell">
+        <div class="place-detail-row"><span class="place-detail-label">📍 Endereço</span><span class="place-detail-val">Concordiastraat 4, Otrobanda, Willemstad</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">📞 Reserva</span><span class="place-detail-val">+599 9 461-2178 — reservar com 2-3 semanas!</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">🏺 Ambiente</span><span class="place-detail-val">Cave do século XIX, iluminação a velas, adega à vista com 600 rótulos</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">⭐ Destaques</span><span class="place-detail-val">Magret de pato com Porto, menu degustation 5 pratos, harmonização incluída</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">💡 Dica</span><span class="place-detail-val">Pedir mesa na adega principal. A harmonização de vinhos é excepcional!</span></div>
+      </div>
+      <button class="expand-btn" onclick="togglePlaceDetails('rest-winecell',this)">ℹ️ Ver detalhes</button>
+    </div>
+
+    <div class="place-card curacao">
+      <div class="place-name">🧂 Sal The Kitchen</div>
+      <div class="place-subtitle">Frutos do Mar · Willemstad · $$$</div>
+      <div class="place-tags">
+        <span class="tag tag-reserve">Reserva recomendada</span>
+        <span class="tag tag-price">~$40-60 pp</span>
+      </div>
+      <div class="place-desc">Frutos do mar com toques caribenhos. Vista para o canal. Ambiente descontraído e elegante.</div>
+      <div class="place-details" id="rest-sal">
+        <div class="place-detail-row"><span class="place-detail-label">📍 Endereço</span><span class="place-detail-val">Handelskade 13, Punda, Willemstad</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">📞 Reserva</span><span class="place-detail-val">+599 9 461-4599</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">⭐ Destaques</span><span class="place-detail-val">Lagosta grelhada, camarão no leite de coco, caipirinha local</span></div>
+      </div>
+      <button class="expand-btn" onclick="togglePlaceDetails('rest-sal',this)">ℹ️ Ver detalhes</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PRAIAS ============ -->
+<div class="content" id="tab-beaches">
+  <div class="island-btns">
+    <button class="island-btn active-a" onclick="switchIsland('ba',this)">🌺 Aruba</button>
+    <button class="island-btn" onclick="switchIsland('bc',this)">🌊 Curaçao</button>
+  </div>
+  <div class="island-section active" id="island-ba">
+
+    <div class="place-card">
+      <div class="place-name">🏖 Eagle Beach</div>
+      <div class="place-subtitle">Sul de Palm Beach · Aruba</div>
+      <div class="place-tags">
+        <span class="tag tag-free">Entrada gratuita</span>
+        <span class="tag tag-price">Cadeiras $15-20/par</span>
+        <span class="tag tag-tip">Top 10 mundial!</span>
+      </div>
+      <div class="place-desc">Eleita repetidamente uma das 10 praias mais bonitas do mundo. Areia branca e fina, água calma e turquesa.</div>
+      <div class="place-details" id="beach-eagle">
+        <div class="place-detail-row"><span class="place-detail-label">📍 Localização</span><span class="place-detail-val">J.E. Irausquin Blvd — 3km ao sul de Palm Beach</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">🐢 Curiosidade</span><span class="place-detail-val">Ninho de tartarugas-de-couro! A maior tartaruga do mundo bota ovos aqui (jan-jun)</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">📸 Foto</span><span class="place-detail-val">Monumento da tartaruga na areia — o cartão postal da praia</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">🏄 Atividades</span><span class="place-detail-val">Paddle board, kayak, snorkel, aluguel de guarda-sol</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">💡 Dica</span><span class="place-detail-val">Chegar antes das 9h para cadeiras na sombra das árvores. Mais tranquila que Palm Beach</span></div>
+      </div>
+      <button class="expand-btn" onclick="togglePlaceDetails('beach-eagle',this)">ℹ️ Ver detalhes</button>
+    </div>
+
+    <div class="place-card">
+      <div class="place-name">🦩 Renaissance Private Island</div>
+      <div class="place-subtitle">Oranjestad · Ilha Privada · Aruba</div>
+      <div class="place-tags">
+        <span class="tag tag-reserve">⚠️ Reserva obrigatória</span>
+        <span class="tag tag-price">~$125 pp</span>
+        <span class="tag tag-tip">🦩 Flamingos!</span>
+      </div>
+      <div class="place-desc">Única praia do mundo com flamingos rosados caminhando livremente! Ilha privada com acesso por barco.</div>
+      <div class="place-details" id="beach-renaissance">
+        <div class="place-detail-row"><span class="place-detail-label">📞 Reserva</span><span class="place-detail-val">+297 583-6000 — reservar com 2-3 semanas!</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">💰 Inclui</span><span class="place-detail-val">Barco, acesso à ilha, 1 drinque, espreguiçadeiras</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">🦩 Flamingos</span><span class="place-detail-val">Semisselvagens. Podem se aproximar! Não alimentar. Câmera impermeável recomendada</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">💡 Dica</span><span class="place-detail-val">Ir às 15h — menos turistas. Contratar pelo hotel Renaissance em Oranjestad</span></div>
+      </div>
+      <button class="expand-btn" onclick="togglePlaceDetails('beach-renaissance',this)">ℹ️ Ver detalhes</button>
+    </div>
+
+    <div class="place-card">
+      <div class="place-name">🤿 Malmok & Arashi Beach</div>
+      <div class="place-subtitle">Norte de Aruba · Snorkel</div>
+      <div class="place-tags">
+        <span class="tag tag-free">Entrada gratuita</span>
+        <span class="tag tag-tip">🐢 Tartarugas!</span>
+      </div>
+      <div class="place-desc">Melhor snorkel de Aruba! Tartarugas marinhas garantidas nas pedras rasas. Menos turistas, mais natureza.</div>
+      <div class="place-details" id="beach-malmok">
+        <div class="place-detail-row"><span class="place-detail-label">📍 Localização</span><span class="place-detail-val">Malmokweg — 3km ao norte de Palm Beach</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">🐢 Snorkel</span><span class="place-detail-val">Tartarugas verdes pastando algas nas pedras rasas. Entrar pelo lado esquerdo de Arashi</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">💡 Dica</span><span class="place-detail-val">Levar kit de snorkel próprio. Chegar antes das 9h para a melhor visibilidade da água</span></div>
+      </div>
+      <button class="expand-btn" onclick="togglePlaceDetails('beach-malmok',this)">ℹ️ Ver detalhes</button>
+    </div>
+
+    <div class="place-card">
+      <div class="place-name">🪨 Natural Pool (Conchi)</div>
+      <div class="place-subtitle">Parque Arikok · Leste de Aruba</div>
+      <div class="place-tags">
+        <span class="tag tag-reserve">⚠️ Tour 4×4 obrigatório</span>
+        <span class="tag tag-price">~$60-80 pp</span>
+        <span class="tag tag-tip">Único no mundo!</span>
+      </div>
+      <div class="place-desc">Piscina natural formada por rochas vulcânicas no oceano aberto. Paisagem lunar única. Só acessível por 4×4.</div>
+      <div class="place-details" id="beach-conchi">
+        <div class="place-detail-row"><span class="place-detail-label">📍 Localização</span><span class="place-detail-val">Parque Nacional Arikok, lado leste da ilha</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">🚙 Acesso</span><span class="place-detail-val">Obrigatório tour 4×4 (~2h de aventura pelo terreno rochoso)</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">💡 Dica</span><span class="place-detail-val">Levar sandália de borracha (rochas escorregadias), snorkel e protetor solar. Reservar com 1 semana!</span></div>
+      </div>
+      <button class="expand-btn" onclick="togglePlaceDetails('beach-conchi',this)">ℹ️ Ver detalhes</button>
+    </div>
+
+  </div>
+  <div class="island-section" id="island-bc">
+
+    <div class="place-card curacao">
+      <div class="place-name">🏖 Grote Knip (Kenepa Grandi)</div>
+      <div class="place-subtitle">Bandabou · Noroeste de Curaçao</div>
+      <div class="place-tags">
+        <span class="tag tag-free">Entrada gratuita</span>
+        <span class="tag tag-tip">A mais linda!</span>
+      </div>
+      <div class="place-desc">A praia mais linda de Curaçao! Penhascos brancos, água azul-turquesa profunda. Deve-se chegar cedo!</div>
+      <div class="place-details" id="beach-grootknip">
+        <div class="place-detail-row"><span class="place-detail-label">📍 Localização</span><span class="place-detail-val">Knipweg, Bandabou — ~40 min de St. Marie</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">📸 Melhor foto</span><span class="place-detail-val">De cima do penhasco à esquerda — vista panorâmica da baía inteira</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">🤿 Snorkel</span><span class="place-detail-val">Peixes tropicais coloridos nas bordas da baía. Levar kit próprio!</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">💡 Dica</span><span class="place-detail-val">Chegar ANTES das 9h — ônibus de turistas chegam às 10h. Terça é mais tranquilo!</span></div>
+      </div>
+      <button class="expand-btn" onclick="togglePlaceDetails('beach-grootknip',this)">ℹ️ Ver detalhes</button>
+    </div>
+
+    <div class="place-card curacao">
+      <div class="place-name">🐢 Playa Lagun</div>
+      <div class="place-subtitle">Bandabou · Curaçao</div>
+      <div class="place-tags">
+        <span class="tag tag-free">Entrada gratuita</span>
+        <span class="tag tag-tip">🐢 Tartarugas garantidas!</span>
+      </div>
+      <div class="place-desc">A praia das tartarugas marinhas de Curaçao! Baía estreita entre penhascos. Snorkel garantido com tartarugas.</div>
+      <div class="place-details" id="beach-lagun">
+        <div class="place-detail-row"><span class="place-detail-label">📍 Localização</span><span class="place-detail-val">Lagun, Bandabou — ~5 min de Grote Knip</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">🐢 Snorkel</span><span class="place-detail-val">Tartarugas comem algas no centro da baía, água rasa. Não tocar — observar de 2m</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">🍽 No local</span><span class="place-detail-val">Restaurante Playa Lagun — peixe fresco e lagosta grelhada</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">💡 Dica</span><span class="place-detail-val">Melhor snorkel para iniciantes — baía calma e rasa. Aluguel de snorkel ~$10</span></div>
+      </div>
+      <button class="expand-btn" onclick="togglePlaceDetails('beach-lagun',this)">ℹ️ Ver detalhes</button>
+    </div>
+
+    <div class="place-card curacao">
+      <div class="place-name">🐚 Cas Abao Beach</div>
+      <div class="place-subtitle">Banda Abou · Curaçao</div>
+      <div class="place-tags">
+        <span class="tag tag-price">$6/carro + $5-7 pp</span>
+        <span class="tag tag-tip">Top do Caribe!</span>
+      </div>
+      <div class="place-desc">Uma das melhores praias do Caribe inteiro! Areia branca, água cristalina, infraestrutura completa com restaurante.</div>
+      <div class="place-details" id="beach-casabao">
+        <div class="place-detail-row"><span class="place-detail-label">📍 Localização</span><span class="place-detail-val">Banda Abou — ~35 min de Willemstad</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">🤿 Snorkel</span><span class="place-detail-val">Reef de coral a 50m da praia. Peixes, raias e até tubarão-lixa ocasionalmente!</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">🏄 Atividades</span><span class="place-detail-val">Kayak, paddle board, snorkel, restaurante, bar</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">💡 Dica</span><span class="place-detail-val">Chegar antes das 10h. Quarta e quinta mais tranquilo. Usar protetor solar REEF SAFE!</span></div>
+      </div>
+      <button class="expand-btn" onclick="togglePlaceDetails('beach-casabao',this)">ℹ️ Ver detalhes</button>
+    </div>
+
+    <div class="place-card curacao">
+      <div class="place-name">🐠 Porto Mari</div>
+      <div class="place-subtitle">Banda Abou · Curaçao</div>
+      <div class="place-tags">
+        <span class="tag tag-price">$3 pp + cadeiras $3,50</span>
+        <span class="tag tag-tip">Double reef!</span>
+      </div>
+      <div class="place-desc">Dois recifes de coral distintos! Um raso para snorkel e outro profundo para mergulho. Restaurante à beira-mar.</div>
+      <div class="place-details" id="beach-portomari">
+        <div class="place-detail-row"><span class="place-detail-label">📍 Localização</span><span class="place-detail-val">Banda Abou — ~10 min de Cas Abao</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">🤿 Mergulho</span><span class="place-detail-val">Recife raso (3m) para snorkel + recife profundo (18m) para mergulho. Manta ray ocasional!</span></div>
+        <div class="place-detail-row"><span class="place-detail-label">💡 Dica</span><span class="place-detail-val">Almoçar no restaurante local — peixe do dia é excelente. Combinar com Cas Abao no mesmo dia</span></div>
+      </div>
+      <button class="expand-btn" onclick="togglePlaceDetails('beach-portomari',this)">ℹ️ Ver detalhes</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ CUSTOS ============ -->
+<div class="content" id="tab-costs">
+  <div class="balance-hero" id="balanceHero">
+    <div style="font-size:15px;font-weight:700;margin-bottom:8px;">💰 Resumo Financeiro</div>
+    <div class="balance-grid">
+      <div class="balance-item"><div class="balance-val" id="bal-prev">$3.544</div><div class="balance-label">Previsto</div></div>
+      <div class="balance-item"><div class="balance-val" id="bal-real">$0</div><div class="balance-label">Realizado</div></div>
+      <div class="balance-item"><div class="balance-val" id="bal-saldo" style="color:#4ade80;">$3.544</div><div class="balance-label">Saldo</div></div>
+    </div>
+  </div>
+  <div class="cost-tabs">
+    <button class="cost-tab active" onclick="switchCostTab('previsto',this)">📊 Previsto</button>
+    <button class="cost-tab" onclick="switchCostTab('realizado',this)">💳 Realizado</button>
+  </div>
+
+  <div class="cost-section active" id="cost-previsto">
+    <div class="card">
+      <div class="card-title">🌺 Aruba — 5 dias (casal)</div>
+      <div class="cost-row"><span>Aluguel de carro</span><span>$250</span></div>
+      <div class="cost-row"><span>Cafés da manhã (×2 × 5d)</span><span>$150</span></div>
+      <div class="cost-row"><span>Almoços (×2 × 5d)</span><span>$220</span></div>
+      <div class="cost-row"><span>Jantares (×2 × 5d)</span><span>$600</span></div>
+      <div class="cost-row"><span>Drinks / happy hours</span><span>$300</span></div>
+      <div class="cost-row"><span>Cadeiras de praia</span><span>$80</span></div>
+      <div class="cost-row"><span>Renaissance Island (×2)</span><span>$250</span></div>
+      <div class="cost-row"><span>Natural Pool Tour (×2)</span><span>$140</span></div>
+      <div class="cost-row"><span>Spa / Opcionais</span><span>$200</span></div>
+      <div class="cost-row"><span>Souvenirs / Aloe</span><span>$100</span></div>
+      <div class="cost-row"><span class="cost-total">Subtotal Aruba</span><span class="cost-total">~$2.290</span></div>
+    </div>
+    <div class="card">
+      <div class="card-title">🌊 Curaçao — 4 dias (casal)</div>
+      <div class="cost-row"><span>Aluguel de carro</span><span>$180</span></div>
+      <div class="cost-row"><span>Cafés da manhã (×2 × 4d)</span><span>$104</span></div>
+      <div class="cost-row"><span>Almoços (×2 × 4d)</span><span>$160</span></div>
+      <div class="cost-row"><span>Jantares (×2 × 4d)</span><span>$440</span></div>
+      <div class="cost-row"><span>Drinks / beach clubs</span><span>$200</span></div>
+      <div class="cost-row"><span>Entradas praias</span><span>$18</span></div>
+      <div class="cost-row"><span>Cadeiras praias</span><span>$48</span></div>
+      <div class="cost-row"><span>Kura Hulanda (×2)</span><span>$24</span></div>
+      <div class="cost-row"><span>Souvenirs / Blue Curaçao</span><span>$80</span></div>
+      <div class="cost-row"><span class="cost-total">Subtotal Curaçao</span><span class="cost-total">~$1.254</span></div>
+    </div>
+    <div class="card" style="background:linear-gradient(135deg,#0B4F6C,#0A7A5A);color:white;">
+      <div class="cost-row" style="border-color:rgba(255,255,255,.25);color:white;font-size:15px;font-weight:800;"><span>TOTAL PREVISTO (casal)</span><span style="font-size:22px;">~$3.544</span></div>
+      <p style="font-size:11px;opacity:.7;margin-top:8px;">* Sem passagens aéreas e hospedagem</p>
+    </div>
+  </div>
+
+  <div class="cost-section" id="cost-realizado">
+    <div class="exp-form">
+      <div class="section-label" style="margin-top:0">➕ Adicionar despesa</div>
+      <input type="text" class="exp-input" id="expDesc" placeholder="Descrição (ex: Jantar Atardi)">
+      <div class="exp-row">
+        <input type="number" class="exp-input" id="expVal" placeholder="Valor $">
+        <select class="exp-input" id="expCat">
+          <option value="🍽 Refeição">🍽 Refeição</option>
+          <option value="🎯 Passeio">🎯 Passeio</option>
+          <option value="🏖 Praia">🏖 Praia</option>
+          <option value="🚗 Transporte">🚗 Transporte</option>
+          <option value="🛍 Compras">🛍 Compras</option>
+          <option value="🍹 Drinks">🍹 Drinks</option>
+          <option value="📦 Outro">📦 Outro</option>
+        </select>
+      </div>
+      <select class="exp-input" id="expDay">
+        <option value="">Selecionar dia</option>
+        <option>Dia 1 · 11/03 Aruba</option>
+        <option>Dia 2 · 12/03 Aruba</option>
+        <option>Dia 3 · 13/03 Aruba</option>
+        <option>Dia 4 · 14/03 Aruba</option>
+        <option>Dia 5 · 15/03 Aruba</option>
+        <option>Dia 6 · 16/03 Aruba→CW</option>
+        <option>Dia 7 · 17/03 Curaçao</option>
+        <option>Dia 8 · 18/03 Curaçao</option>
+        <option>Dia 9 · 19/03 Curaçao</option>
+        <option>Dia 10 · 20/03 Curaçao</option>
+      </select>
+      <button class="btn-add-exp" onclick="addExpense()">💾 Salvar despesa</button>
+    </div>
+    <div class="card">
+      <div class="card-title">📋 Despesas <span id="expTotalLabel" style="font-size:13px;color:var(--aruba);font-weight:600;"></span></div>
+      <div id="expenseList">
+        <div class="empty-state"><div class="empty-icon">💳</div><p>Nenhuma despesa registrada.<br>Adicione suas despesas acima!</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ FOTOS ============ -->
+<div class="content" id="tab-photos">
+  <div class="hero-card both" style="padding:12px 14px;">
+    <div style="font-size:14px;font-weight:700;margin-bottom:4px;">📸 Álbum Compartilhado</div>
+    <div style="font-size:12px;opacity:.9;">Fotos sincronizadas em tempo real entre Fernando e Daniela.<br><span id="photoSyncInfo">Conectando ao Firebase...</span></div>
+  </div>
+
+  <div class="user-pills">
+    <button class="user-pill active" id="upill-Fernando" onclick="setUser('Fernando',this)">👤 Fernando</button>
+    <button class="user-pill" id="upill-Daniela" onclick="setUser('Daniela',this)">👤 Daniela</button>
+  </div>
+
+  <div class="filter-scroll" id="photoFilters">
+    <button class="filter-chip active" onclick="setPhotoFilter('',this)">Todas</button>
+    <button class="filter-chip" onclick="setPhotoFilter('Fernando',this)">👤 Fernando</button>
+    <button class="filter-chip" onclick="setPhotoFilter('Daniela',this)">👤 Daniela</button>
+    <button class="filter-chip" onclick="setPhotoFilter('Aruba',this)">🌺 Aruba</button>
+    <button class="filter-chip" onclick="setPhotoFilter('Curaçao',this)">🌊 Curaçao</button>
+  </div>
+
+  <div class="photo-grid" id="photoAlbumGrid"></div>
+  <div class="empty-state" id="photoAlbumEmpty">
+    <div class="empty-icon">🌴</div>
+    <p>Nenhuma foto ainda.<br>Toque em <strong>📷 Foto</strong> em qualquer atividade!</p>
+  </div>
+</div>
+
+<!-- ============ DICAS ============ -->
+<div class="content" id="tab-tips">
+  <div class="card">
+    <div class="card-title">📋 Essenciais</div>
+    <div class="tip-card"><div class="tip-title">🛂 Sem visto para brasileiros</div><div class="tip-text">Aruba e Curaçao fazem parte do Reino Holandês. Turistas brasileiros: até 30 dias sem visto.</div></div>
+    <div class="tip-card"><div class="tip-title">💳 Dinheiro & Pagamentos</div><div class="tip-text">Cartão Visa/Mastercard aceito em quase tudo. Leve USD em espécie para barracas locais. AWG = florim arubano (~$0,56).</div></div>
+    <div class="tip-card"><div class="tip-title">🚗 Aluguel de Carro</div><div class="tip-text">Aruba: ~$45-60/dia · Curaçao: ~$35-55/dia. Reservar com antecedência! CNH brasileira válida.</div></div>
+    <div class="tip-card"><div class="tip-title">💰 Gorjeta</div><div class="tip-text">15-18% em restaurantes. Verifique se já está inclusa na conta ("service charge").</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">🌊 Praias & Natureza</div>
+    <div class="tip-card"><div class="tip-title">☀️ Protetor Solar Reef Safe</div><div class="tip-text">OBRIGATÓRIO em Curaçao (fiscalizado). Em Aruba também recomendado. Reaplicar a cada hora!</div></div>
+    <div class="tip-card"><div class="tip-title">🤿 Kit de Snorkel</div><div class="tip-text">Trazer o seu — aluguel nas praias ~$10-15/dia. Imprescindível para Renaissance, Malmok, Lagun, Cas Abao.</div></div>
+    <div class="tip-card cur"><div class="tip-title">⚠️ GPS em Curaçao</div><div class="tip-text">Ruas têm poucas placas! Baixe o Google Maps offline antes de sair do hotel. Essencial para praias do noroeste.</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">🛍 Lembranças</div>
+    <div class="tip-card"><div class="tip-title">🌺 Aruba</div><div class="tip-text">Aloe vera Aruba Aloe (comprar na fábrica — mais barato!), rum Coecoei, miniatura flamingo, camisetas.</div></div>
+    <div class="tip-card cur"><div class="tip-title">🌊 Curaçao</div><div class="tip-text">🔵 Blue Curaçao ORIGINAL — Senior Triple Sec (comprar na destilaria, não no aeroporto!). Estátuas Chichi coloridas. Sal local.</div></div>
+  </div>
+  <div class="highlight">
+    <p>📞 Contatos de emergência:<br>
+    🦩 Renaissance Island: +297 583-6000<br>
+    ⛵ Monforte Cruise: +297 586-1603<br>
+    🍽 Gianni's Aruba: +297 586-6665<br>
+    🔥 AZAR: azararuba.com<br>
+    🥂 Wine Cellar CW: +599 9 461-2178<br>
+    🏰 Fort Nassau: +599 9 461-3086<br>
+    🌉 Gouverneur: +599 9 462-9999<br>
+    🍴 Kome: komecuracao.com</p>
+  </div>
+</div>
+
+<!-- ============ MODALS ============ -->
+
+<!-- PHOTO MODAL -->
+<input type="file" id="globalPhotoInput" accept="image/*" style="display:none" onchange="handleModalPhoto(event)">
+
+<div class="photo-modal-overlay" id="photoModalOverlay">
+  <div class="photo-modal">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <div class="modal-title" id="photoModalTitle">📷 Fotos</div>
+      <button class="modal-close" onclick="closePhotoModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="offlineWarn" style="display:none;background:#FEF3C7;border-radius:8px;padding:8px 10px;font-size:12px;color:#92400E;margin-bottom:10px;">⚠️ Offline — foto será sincronizada quando conectar.</div>
+      <div class="photo-action-btns" id="photoActionBtns">
+        <button class="photo-action-btn" onclick="triggerCapture('camera')"><span class="icon">📷</span><span>Tirar foto</span></button>
+        <button class="photo-action-btn" onclick="triggerCapture('gallery')"><span class="icon">🖼️</span><span>Da galeria</span></button>
+      </div>
+      <img class="photo-preview-modal" id="photoPreviewModal" src="" alt="">
+      <input type="text" class="caption-input" id="photoCaptionModal" placeholder="Adicione uma legenda...">
+      <div id="photoSyncBadge"></div>
+      <button class="btn-save-photo" id="photoSaveBtn" onclick="saveModalPhoto()">💾 Salvar foto</button>
+      <button class="btn-cancel-photo" id="photoCancelBtn" onclick="cancelModalPhoto()">Cancelar</button>
+      <div class="modal-photo-grid" id="modalPhotoGrid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT EVENT MODAL -->
+<div class="edit-modal-overlay" id="editModalOverlay">
+  <div class="edit-modal">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <div class="modal-title">✏️ Editar Evento</div>
+      <button class="modal-close" onclick="closeEditModal()">✕</button>
+    </div>
+    <div class="modal-body" style="padding:14px 16px;">
+      <input type="hidden" id="editEventId">
+      <label style="font-size:12px;font-weight:700;color:var(--sub);display:block;margin-bottom:4px;">TÍTULO DO EVENTO</label>
+      <input type="text" class="edit-input" id="editEventTitle" placeholder="Nome do evento">
+      <label style="font-size:12px;font-weight:700;color:var(--sub);display:block;margin-bottom:4px;">DESCRIÇÃO</label>
+      <textarea class="edit-input edit-textarea" id="editEventDesc" placeholder="Descrição, horário, detalhes..."></textarea>
+      <button class="btn-save-edit" onclick="saveEditEvent()">💾 Salvar alterações</button>
+      <button class="btn-del-event" onclick="deleteEvent()">🗑 Excluir este evento</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD EVENT MODAL -->
+<div class="edit-modal-overlay" id="addModalOverlay">
+  <div class="edit-modal">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <div class="modal-title">➕ Novo Evento</div>
+      <button class="modal-close" onclick="closeAddModal()">✕</button>
+    </div>
+    <div class="modal-body" style="padding:14px 16px;">
+      <input type="hidden" id="addEventIsland">
+      <input type="hidden" id="addEventDay">
+      <label style="font-size:12px;font-weight:700;color:var(--sub);display:block;margin-bottom:4px;">TÍTULO</label>
+      <input type="text" class="edit-input" id="addEventTitle" placeholder="Ex: 14h — Almoço no restaurante X">
+      <label style="font-size:12px;font-weight:700;color:var(--sub);display:block;margin-bottom:4px;">DESCRIÇÃO</label>
+      <textarea class="edit-input edit-textarea" id="addEventDesc" placeholder="Detalhes do evento..."></textarea>
+      <label style="font-size:12px;font-weight:700;color:var(--sub);display:block;margin-bottom:4px;">EMOJI DO ÍCONE</label>
+      <input type="text" class="edit-input" id="addEventIcon" placeholder="Ex: 🍽 🏖 🎯" style="font-size:20px;">
+      <button class="btn-save-edit" onclick="confirmAddEvent()">✅ Adicionar Evento</button>
+    </div>
+  </div>
+</div>
+
+<!-- EXPORT MODAL -->
+<div class="export-modal-overlay" id="exportModalOverlay">
+  <div class="export-modal">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <div class="modal-title">💾 Salvar Recordação</div>
+      <button class="modal-close" onclick="document.getElementById('exportModalOverlay').classList.remove('open')">✕</button>
+    </div>
+    <div class="modal-body" style="padding:14px 16px;" id="exportOptions">
+      <div class="export-option" onclick="doExport('full')">
+        <div class="export-icon">📖</div>
+        <div class="export-text"><strong>Recordação completa</strong><span>Roteiro + todas as fotos embutidas. Abre para sempre em qualquer navegador.</span></div>
+      </div>
+      <div class="export-option" onclick="doExport('photos')">
+        <div class="export-icon">📸</div>
+        <div class="export-text"><strong>Só as fotos (álbum)</strong><span>HTML com todas as fotos e legendas organizadas. Leve e fácil de compartilhar.</span></div>
+      </div>
+      <div class="export-option" onclick="doExport('roteiro')">
+        <div class="export-icon">🗺️</div>
+        <div class="export-text"><strong>Só o roteiro</strong><span>O guia completo sem as fotos. Pequeno para enviar por WhatsApp ou e-mail.</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="photoLightbox" onclick="closeLightbox()">
+  <button class="lightbox-close">✕</button>
+  <img id="lightboxImg" src="" alt="">
+  <div class="lightbox-cap" id="lightboxCap"></div>
+  <div class="lightbox-meta" id="lightboxMeta"></div>
+</div>
+
+<!-- FAB -->
+<button class="fab" onclick="document.getElementById('exportModalOverlay').classList.add('open')">💾 Recordação</button>
+
+<script>
+// ── TABS ─────────────────────────────────────────────────
+const TABS = ['overview','aruba','curacao','hotels','airports','restaurants','beaches','costs','photos','tips'];
+function switchTab(id) {
+  document.querySelectorAll('.content').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  const i = TABS.indexOf(id);
+  const tabs = document.querySelectorAll('.tab');
+  if(tabs[i]){ tabs[i].classList.add('active'); tabs[i].scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'}); }
+  if(id==='photos') renderAlbum();
+  if(id==='costs') updateBalance();
+}
+
+function switchIsland(id, btn) {
+  const p = btn.closest('.content');
+  p.querySelectorAll('.island-section').forEach(s=>s.classList.remove('active'));
+  p.querySelectorAll('.island-btn').forEach(b=>{b.classList.remove('active-a','active-c');});
+  p.querySelector('#island-'+id).classList.add('active');
+  if(id.endsWith('a')) btn.classList.add('active-a'); else btn.classList.add('active-c');
+}
+
+function switchCostTab(id, btn) {
+  document.querySelectorAll('.cost-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.cost-tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('cost-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ── DETAIL TOGGLES ────────────────────────────────────────
+function toggleDetail(id, btn) {
+  const d = document.getElementById(id);
+  if(d.classList.contains('open')){ d.classList.remove('open'); btn.textContent='ℹ️ Mais detalhes'; }
+  else { d.classList.add('open'); btn.textContent='▲ Fechar'; }
+}
+function togglePlaceDetails(id, btn) {
+  const d = document.getElementById(id);
+  if(d.classList.toggle('open')){ btn.textContent='▲ Fechar detalhes'; }
+  else { btn.textContent='ℹ️ Ver detalhes'; }
+}
+
+// ── FIREBASE STATE ────────────────────────────────────────
+let fbReady = false;
+let currentUser = localStorage.getItem('trip_user') || 'Fernando';
+let allPhotos = [];
+let photoFilter = '';
+let unsubPhotos = null;
+
+document.addEventListener('firebase-ready', function() {
+  fbReady = true;
+  updateSyncStatus(true);
+  listenToPhotos();
+  listenToExpenses();
+  document.getElementById('photoSyncInfo').textContent = 'Sincronizado em tempo real 🔄';
+});
+
+function updateSyncStatus(online) {
+  const dot = document.getElementById('syncDot');
+  const txt = document.getElementById('syncText');
+  dot.className = 'sync-dot' + (online ? '' : ' off');
+  txt.textContent = online ? 'Sincronizado' : 'Sem conexão';
+}
+
+// ── USER ──────────────────────────────────────────────────
+function setUser(name, btn) {
+  currentUser = name;
+  localStorage.setItem('trip_user', name);
+  document.querySelectorAll('.user-pill').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// ── PHOTOS ────────────────────────────────────────────────
+let pendingImg = null;
+let activeActId = null;
+let activeActLabel = null;
+
+function openPhotoModal(actId, actLabel) {
+  activeActId = actId;
+  activeActLabel = actLabel;
+  pendingImg = null;
+  document.getElementById('photoModalTitle').textContent = '📷 ' + actLabel.substring(0,38);
+  document.getElementById('photoPreviewModal').className = 'photo-preview-modal';
+  document.getElementById('photoPreviewModal').src = '';
+  document.getElementById('photoCaptionModal').value = '';
+  document.getElementById('photoSaveBtn').className = 'btn-save-photo';
+  document.getElementById('photoCancelBtn').className = 'btn-cancel-photo';
+  document.getElementById('photoActionBtns').style.display = 'flex';
+  document.getElementById('photoSyncBadge').innerHTML = '';
+  renderModalGrid();
+  document.getElementById('photoModalOverlay').classList.add('open');
+}
+
+function closePhotoModal() {
+  document.getElementById('photoModalOverlay').classList.remove('open');
+  pendingImg = null;
+}
+
+document.getElementById('photoModalOverlay').addEventListener('click', function(e){
+  if(e.target===this) closePhotoModal();
+});
+
+function triggerCapture(mode) {
+  const inp = document.getElementById('globalPhotoInput');
+  if(mode==='camera') inp.setAttribute('capture','environment'); else inp.removeAttribute('capture');
+  inp.click();
+}
+
+function compressImage(dataUrl, maxW, q, cb) {
+  const img = new Image();
+  img.onload = function() {
+    const c = document.createElement('canvas');
+    let w=img.width, h=img.height;
+    if(w>maxW){h=Math.round(h*maxW/w);w=maxW;}
+    c.width=w; c.height=h;
+    c.getContext('2d').drawImage(img,0,0,w,h);
+    cb(c.toDataURL('image/jpeg',q));
+  };
+  img.src = dataUrl;
+}
+
+function handleModalPhoto(e) {
+  const file = e.target.files[0]; if(!file) return;
+  const r = new FileReader();
+  r.onload = function(ev) {
+    compressImage(ev.target.result, 1024, 0.78, function(compressed) {
+      pendingImg = compressed;
+      document.getElementById('photoPreviewModal').src = compressed;
+      document.getElementById('photoPreviewModal').className = 'photo-preview-modal vis';
+      document.getElementById('photoSaveBtn').className = 'btn-save-photo vis';
+      document.getElementById('photoCancelBtn').className = 'btn-cancel-photo vis';
+      document.getElementById('photoActionBtns').style.display = 'none';
+      const kb = Math.round(compressed.length*0.75/1024);
+      document.getElementById('photoSyncBadge').innerHTML = `<span class="sync-badge sync-ok">📦 ~${kb}KB · Pronto para salvar</span>`;
+    });
+  };
+  r.readAsDataURL(file);
+  e.target.value = '';
+}
+
+async function saveModalPhoto() {
+  if(!pendingImg) return;
+  const caption = document.getElementById('photoCaptionModal').value.trim() || activeActLabel;
+  const photoData = {
+    img: pendingImg,
+    caption,
+    activityId: activeActId,
+    activityLabel: activeActLabel,
+    user: currentUser,
+    date: new Date().toLocaleDateString('pt-BR'),
+    timestamp: Date.now()
+  };
+
+  document.getElementById('photoSyncBadge').innerHTML = '<span class="sync-badge sync-pending">⏳ Salvando...</span>';
+
+  if(fbReady && window._db) {
+    try {
+      const { collection, addDoc } = window._fb;
+      await addDoc(collection(window._db,'photos'), photoData);
+      document.getElementById('photoSyncBadge').innerHTML = '<span class="sync-badge sync-ok">✅ Salvo e sincronizado!</span>';
+    } catch(err) {
+      saveLocalPhoto(photoData);
+    }
+  } else {
+    saveLocalPhoto(photoData);
+    document.getElementById('photoSyncBadge').innerHTML = '<span class="sync-badge sync-pending">📴 Salvo offline</span>';
+  }
+
+  pendingImg = null;
+  document.getElementById('photoPreviewModal').className = 'photo-preview-modal';
+  document.getElementById('photoPreviewModal').src = '';
+  document.getElementById('photoCaptionModal').value = '';
+  document.getElementById('photoSaveBtn').className = 'btn-save-photo';
+  document.getElementById('photoCancelBtn').className = 'btn-cancel-photo';
+  document.getElementById('photoActionBtns').style.display = 'flex';
+  setTimeout(() => { renderModalGrid(); }, 800);
+}
+
+function cancelModalPhoto() {
+  pendingImg = null;
+  document.getElementById('photoPreviewModal').className = 'photo-preview-modal';
+  document.getElementById('photoPreviewModal').src = '';
+  document.getElementById('photoCaptionModal').value = '';
+  document.getElementById('photoSaveBtn').className = 'btn-save-photo';
+  document.getElementById('photoCancelBtn').className = 'btn-cancel-photo';
+  document.getElementById('photoActionBtns').style.display = 'flex';
+  document.getElementById('photoSyncBadge').innerHTML = '';
+}
+
+function saveLocalPhoto(data) {
+  const arr = JSON.parse(localStorage.getItem('offline_photos')||'[]');
+  arr.unshift({...data, id:'local_'+Date.now()});
+  localStorage.setItem('offline_photos', JSON.stringify(arr));
+  updatePhotoBadge(data.activityId, 1);
+}
+
+function listenToPhotos() {
+  if(!fbReady) return;
+  const { collection, onSnapshot, query, orderBy } = window._fb;
+  if(unsubPhotos) unsubPhotos();
+  unsubPhotos = onSnapshot(
+    query(collection(window._db,'photos'), orderBy('timestamp','desc')),
+    (snap) => {
+      allPhotos = snap.docs.map(d=>({...d.data(), fbId: d.id}));
+      updateAllPhotoBadges();
+      renderAlbum();
+      if(activeActId) renderModalGrid();
+      const total = allPhotos.length;
+      document.getElementById('photoSyncInfo').textContent = `${total} foto${total!==1?'s':''} sincronizada${total!==1?'s':''} 🔄`;
+    }
+  );
+}
+
+function renderModalGrid() {
+  const local = JSON.parse(localStorage.getItem('offline_photos')||'[]');
+  const fb = allPhotos.filter(p=>p.activityId===activeActId);
+  const loc = local.filter(p=>p.activityId===activeActId);
+  const all = [...fb, ...loc];
+  const g = document.getElementById('modalPhotoGrid');
+  if(!all.length){g.innerHTML='';return;}
+  g.innerHTML = '<div style="font-size:11px;font-weight:700;color:var(--sub);text-transform:uppercase;margin:10px 0 6px;">Fotos salvas</div>' +
+    all.map(p=>`
+      <div class="modal-thumb">
+        <img src="${p.img}" alt="${p.caption}" onclick="openLightbox('${p.fbId||p.id}')">
+        <button class="modal-thumb-del" onclick="deletePhoto('${p.fbId||p.id}','${p.id||''}')">✕</button>
+        <div class="modal-thumb-info">
+          <div class="modal-thumb-cap">${p.caption}</div>
+          <div class="modal-thumb-who">👤 ${p.user||'?'} · ${p.date||''}</div>
+        </div>
+      </div>`).join('');
+}
+
+async function deletePhoto(fbId, localId) {
+  if(!confirm('Remover esta foto?')) return;
+  if(fbId && fbId.startsWith('local_')) {
+    const arr = JSON.parse(localStorage.getItem('offline_photos')||'[]').filter(p=>p.id!==fbId);
+    localStorage.setItem('offline_photos', JSON.stringify(arr));
+    renderModalGrid(); renderAlbum(); updateAllPhotoBadges();
+  } else if(fbId && fbReady) {
+    const { doc, deleteDoc } = window._fb;
+    await deleteDoc(doc(window._db,'photos',fbId));
+  }
+}
+
+function updateAllPhotoBadges() {
+  const counts = {};
+  const local = JSON.parse(localStorage.getItem('offline_photos')||'[]');
+  [...allPhotos, ...local].forEach(p => { counts[p.activityId] = (counts[p.activityId]||0)+1; });
+  Object.entries(counts).forEach(([id,n]) => updatePhotoBadge(id,n));
+}
+
+function updatePhotoBadge(actId, count) {
+  const btn = document.getElementById('pbtn-'+actId);
+  const cnt = document.getElementById('pcnt-'+actId);
+  if(!btn||!cnt) return;
+  if(count>0){btn.classList.add('has-photos');cnt.textContent=count;cnt.style.display='inline';}
+  else{btn.classList.remove('has-photos');cnt.style.display='none';}
+}
+
+// ── ALBUM ─────────────────────────────────────────────────
+function setPhotoFilter(f, btn) {
+  photoFilter = f;
+  document.querySelectorAll('#photoFilters .filter-chip').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderAlbum();
+}
+
+function renderAlbum() {
+  const local = JSON.parse(localStorage.getItem('offline_photos')||'[]');
+  let all = [...allPhotos, ...local];
+  if(photoFilter) all = all.filter(p=>
+    (p.user===photoFilter) ||
+    (photoFilter==='Aruba' && p.activityLabel && !p.activityLabel.toLowerCase().includes('curaçao')) ||
+    (photoFilter==='Curaçao' && p.activityLabel && p.activityLabel.toLowerCase().includes('curaçao'))
+  );
+  const grid = document.getElementById('photoAlbumGrid');
+  const empty = document.getElementById('photoAlbumEmpty');
+  if(!all.length){grid.innerHTML='';empty.style.display='block';return;}
+  empty.style.display='none';
+  grid.innerHTML = all.map(p=>`
+    <div class="photo-card">
+      <img src="${p.img}" alt="${p.caption}" onclick="openLightbox('${p.fbId||p.id||''}')" loading="lazy">
+      <span class="who-badge ${p.user==='Fernando'?'who-f':'who-d'}">${p.user==='Fernando'?'👤 F':'👤 D'}</span>
+      <button class="photo-card-del" onclick="deletePhoto('${p.fbId||p.id||''}','')">✕</button>
+      <div class="photo-card-body">
+        <div class="photo-card-cap">${p.caption}</div>
+        <div class="photo-card-meta">${p.activityLabel||''} · ${p.date||''}</div>
+      </div>
+    </div>`).join('');
+}
+
+function openLightbox(id) {
+  const local = JSON.parse(localStorage.getItem('offline_photos')||'[]');
+  const p = allPhotos.find(x=>x.fbId===id) || local.find(x=>x.id===id);
+  if(!p) return;
+  document.getElementById('lightboxImg').src = p.img;
+  document.getElementById('lightboxCap').textContent = p.caption;
+  document.getElementById('lightboxMeta').textContent = `👤 ${p.user||''} · ${p.activityLabel||''} · ${p.date||''}`;
+  document.getElementById('photoLightbox').classList.add('open');
+}
+function closeLightbox(){ document.getElementById('photoLightbox').classList.remove('open'); }
+
+// ── EXPENSES ─────────────────────────────────────────────
+let allExpenses = [];
+let unsubExp = null;
+
+function listenToExpenses() {
+  if(!fbReady) return;
+  const { collection, onSnapshot, query, orderBy } = window._fb;
+  if(unsubExp) unsubExp();
+  unsubExp = onSnapshot(
+    query(collection(window._db,'expenses'), orderBy('timestamp','desc')),
+    (snap) => {
+      allExpenses = snap.docs.map(d=>({...d.data(), fbId:d.id}));
+      renderExpenses();
+      updateBalance();
+    }
+  );
+}
+
+async function addExpense() {
+  const desc = document.getElementById('expDesc').value.trim();
+  const val = parseFloat(document.getElementById('expVal').value);
+  const cat = document.getElementById('expCat').value;
+  const day = document.getElementById('expDay').value;
+  if(!desc || isNaN(val) || val<=0) { alert('Preencha a descrição e o valor!'); return; }
+  const data = { desc, val, cat, day, user:currentUser, date:new Date().toLocaleDateString('pt-BR'), timestamp:Date.now() };
+  if(fbReady && window._db) {
+    const { collection, addDoc } = window._fb;
+    await addDoc(collection(window._db,'expenses'), data);
+  } else {
+    const arr = JSON.parse(localStorage.getItem('offline_expenses')||'[]');
+    arr.unshift({...data, fbId:'local_'+Date.now()});
+    localStorage.setItem('offline_expenses', JSON.stringify(arr));
+    allExpenses = arr;
+    renderExpenses(); updateBalance();
+  }
+  document.getElementById('expDesc').value='';
+  document.getElementById('expVal').value='';
+}
+
+function renderExpenses() {
+  const list = document.getElementById('expenseList');
+  const local = JSON.parse(localStorage.getItem('offline_expenses')||'[]');
+  const all = [...allExpenses, ...(fbReady?[]:local)];
+  if(!all.length){list.innerHTML='<div class="empty-state"><div class="empty-icon">💳</div><p>Nenhuma despesa ainda.</p></div>';return;}
+  const total = all.reduce((s,e)=>s+(e.val||0),0);
+  document.getElementById('expTotalLabel').textContent = `— Total: $${total.toFixed(2)}`;
+  list.innerHTML = all.map(e=>`
+    <div class="expense-item">
+      <div>
+        <div class="expense-name">${e.cat||''} ${e.desc}</div>
+        <div class="expense-meta">${e.day||''} · 👤 ${e.user||''} · ${e.date||''}</div>
+      </div>
+      <div class="expense-right">
+        <div class="expense-val">$${(e.val||0).toFixed(2)}</div>
+        <button class="expense-del" onclick="deleteExpense('${e.fbId}')">🗑</button>
+      </div>
+    </div>`).join('');
+}
+
+async function deleteExpense(fbId) {
+  if(!confirm('Remover esta despesa?')) return;
+  if(fbId.startsWith('local_')) {
+    const arr = JSON.parse(localStorage.getItem('offline_expenses')||'[]').filter(e=>e.fbId!==fbId);
+    localStorage.setItem('offline_expenses', JSON.stringify(arr));
+    allExpenses = arr; renderExpenses(); updateBalance();
+  } else if(fbReady) {
+    const { doc, deleteDoc } = window._fb;
+    await deleteDoc(doc(window._db,'expenses',fbId));
+  }
+}
+
+function updateBalance() {
+  const local = JSON.parse(localStorage.getItem('offline_expenses')||'[]');
+  const all = fbReady ? allExpenses : local;
+  const total = all.reduce((s,e)=>s+(e.val||0),0);
+  const prev = 3544;
+  const saldo = prev - total;
+  document.getElementById('bal-real').textContent = '$'+total.toFixed(0);
+  document.getElementById('bal-saldo').textContent = '$'+saldo.toFixed(0);
+  document.getElementById('bal-saldo').style.color = saldo >= 0 ? '#4ade80' : '#f87171';
+}
+
+// ── EDIT / ADD EVENTS ────────────────────────────────────
+let editingEventId = null;
+
+function openEditEvent(id, title, desc) {
+  editingEventId = id;
+  document.getElementById('editEventId').value = id;
+  document.getElementById('editEventTitle').value = title;
+  document.getElementById('editEventDesc').value = desc;
+  document.getElementById('editModalOverlay').classList.add('open');
+}
+function closeEditModal(){ document.getElementById('editModalOverlay').classList.remove('open'); }
+document.getElementById('editModalOverlay').addEventListener('click',function(e){if(e.target===this)closeEditModal();});
+
+function saveEditEvent() {
+  const id = document.getElementById('editEventId').value;
+  const title = document.getElementById('editEventTitle').value.trim();
+  const desc = document.getElementById('editEventDesc').value.trim();
+  if(!title) return;
+  const el = document.getElementById('evt-'+id);
+  if(el) {
+    el.querySelector('.activity-title').textContent = title;
+    el.querySelector('.activity-desc').textContent = desc;
+    saveCustomEvents();
+  }
+  closeEditModal();
+}
+
+function deleteEvent() {
+  const id = document.getElementById('editEventId').value;
+  if(!confirm('Excluir este evento do roteiro?')) return;
+  const el = document.getElementById('evt-'+id);
+  if(el) el.remove();
+  saveCustomEvents();
+  closeEditModal();
+}
+
+function openAddEvent(island, day) {
+  document.getElementById('addEventIsland').value = island;
+  document.getElementById('addEventDay').value = day;
+  document.getElementById('addEventTitle').value = '';
+  document.getElementById('addEventDesc').value = '';
+  document.getElementById('addEventIcon').value = '📌';
+  document.getElementById('addModalOverlay').classList.add('open');
+}
+function closeAddModal(){ document.getElementById('addModalOverlay').classList.remove('open'); }
+document.getElementById('addModalOverlay').addEventListener('click',function(e){if(e.target===this)closeAddModal();});
+
+function confirmAddEvent() {
+  const island = document.getElementById('addEventIsland').value;
+  const day = document.getElementById('addEventDay').value;
+  const title = document.getElementById('addEventTitle').value.trim();
+  const desc = document.getElementById('addEventDesc').value.trim();
+  const icon = document.getElementById('addEventIcon').value.trim() || '📌';
+  if(!title) return;
+
+  const newId = `${island[0]}${day}-custom-${Date.now()}`;
+  const html = `
+    <div class="activity" id="evt-${newId}">
+      <div class="activity-icon">${icon}</div>
+      <div class="activity-body">
+        <div class="activity-title">${title}</div>
+        <div class="activity-desc">${desc}</div>
+        <div class="activity-footer">
+          <button class="act-photo-btn" id="pbtn-${newId}" onclick="openPhotoModal('${newId}','${title.replace(/'/g,' ')}')">📷 Foto <span class="photo-count-badge" id="pcnt-${newId}" style="display:none">0</span></button>
+          <button class="act-edit-btn" onclick="openEditEvent('${newId}','${title.replace(/'/g,' ')}','${desc.replace(/'/g,' ')}')">✏️</button>
+          <button class="act-del-btn" onclick="document.getElementById('evt-${newId}').remove()">🗑</button>
+        </div>
+      </div>
+    </div>`;
+
+  const container = document.getElementById(`${island}-day-${day}-events`);
+  if(container) {
+    const lastPeriod = container.querySelector('.period:last-child');
+    if(lastPeriod) lastPeriod.insertAdjacentHTML('beforeend', html);
+    else container.insertAdjacentHTML('beforeend', `<div class="period">${html}</div>`);
+  }
+  saveCustomEvents();
+  closeAddModal();
+}
+
+function saveCustomEvents() {
+  // Save to localStorage for persistence
+  localStorage.setItem('custom_events_v1', JSON.stringify(Date.now()));
+}
+
+// ── EXPORT ────────────────────────────────────────────────
+function doExport(type) {
+  document.getElementById('exportModalOverlay').classList.remove('open');
+  setTimeout(() => {
+    try {
+      const today = new Date().toLocaleDateString('pt-BR');
+      let content = '';
+      if(type==='photos') content = buildPhotoAlbum(today);
+      else if(type==='roteiro') content = buildRoteiroOnly(today);
+      else content = buildFullMemory(today);
+      const filename = type==='photos'?'album-aruba-curacao.html':type==='roteiro'?'roteiro-aruba-curacao.html':'recordacao-aruba-curacao-2026.html';
+      const blob = new Blob([content],{type:'text/html;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href=url; a.download=filename;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch(e) { alert('Erro: '+e.message); }
+  }, 200);
+}
+
+function buildPhotoAlbum(today) {
+  const local = JSON.parse(localStorage.getItem('offline_photos')||'[]');
+  const all = [...allPhotos, ...local];
+  if(!all.length) return '<html><body style="font-family:sans-serif;padding:40px;text-align:center"><h1>📸 Álbum vazio</h1><p>Nenhuma foto salva.</p></body></html>';
+  const cards = all.map(p=>`<div style="break-inside:avoid;background:white;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.1);margin-bottom:16px;"><img src="${p.img}" style="width:100%;max-height:280px;object-fit:cover;display:block;"><div style="padding:10px 12px;"><div style="font-weight:700;font-size:14px;">${p.caption}</div><div style="font-size:11px;color:#64748B;margin-top:3px;">👤 ${p.user||''} · ${p.activityLabel||''} · ${p.date||today}</div></div></div>`).join('');
+  return `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>📸 Álbum Aruba & Curaçao 2026</title></head><body style="font-family:-apple-system,sans-serif;background:#F0F4F8;margin:0;padding:16px;"><h1 style="text-align:center;color:#0B4F6C;margin-bottom:4px;font-family:Georgia,serif;">🌴 Aruba & Curaçao 2026</h1><p style="text-align:center;color:#64748B;font-size:13px;margin-bottom:20px;">📸 ${all.length} fotos · Fernando & Daniela · Exportado ${today}</p><div style="columns:2;column-gap:12px;max-width:900px;margin:0 auto;">${cards}</div></body></html>`;
+}
+
+function buildRoteiroOnly(today) {
+  return '<!-- Roteiro exportado em '+today+' -->\n' + document.documentElement.outerHTML.replace(/<button class="fab"[\s\S]*?<\/button>/,'').replace(/class="export-modal-overlay"/g,'class="export-modal-overlay" style="display:none"');
+}
+
+function buildFullMemory(today) {
+  const local = JSON.parse(localStorage.getItem('offline_photos')||'[]');
+  const expenses = JSON.parse(localStorage.getItem('offline_expenses')||'[]');
+  const all = [...allPhotos, ...local];
+  const script = `<script>window.addEventListener('DOMContentLoaded',function(){try{localStorage.setItem('offline_photos',${JSON.stringify(JSON.stringify(all))});localStorage.setItem('offline_expenses',${JSON.stringify(JSON.stringify(expenses))});}catch(e){}});<\/script>`;
+  const src = document.documentElement.outerHTML
+    .replace('<title>', script+'<title>')
+    .replace('🌴 Aruba & Curaçao 2026', '🌴 Recordação — Aruba & Curaçao 2026')
+    .replace(/<button class="fab"[\s\S]*?<\/button>/,'')
+    .replace(/class="export-modal-overlay"/g,'class="export-modal-overlay" style="display:none"');
+  return '<!-- Recordação Aruba & Curaçao 2026 · Fernando & Daniela · '+today+' -->\n'+src;
+}
+
+// ── INIT ──────────────────────────────────────────────────
+updateAllPhotoBadges();
+renderAlbum();
+updateBalance();
+window.addEventListener('online', ()=>updateSyncStatus(true));
+window.addEventListener('offline', ()=>updateSyncStatus(false));
+if(!window._fbReady) {
+  setTimeout(()=>{ if(!fbReady) { updateSyncStatus(false); document.getElementById('photoSyncInfo').textContent='Sem conexão — fotos salvas localmente'; } }, 4000);
+}
+</script>
+</body>
+</html>
